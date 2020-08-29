@@ -1,0 +1,241 @@
+// icon 產生
+// 需重新改寫
+// @mixin sub-menu-icon() {
+//   @each $name in $icons {
+//     .#{$name}-icon {
+//       margin: 0.5vmin auto;
+//       text-align: center;
+//       @include icon(map-get($iconsList, $name), 9.5vmin, 8.535vmin, false);
+//       background-size: 90%;
+//       background-position-x: 0.5vmin;
+//       @if ($name == "message") {
+//         width: 6.4vmin;
+//         background-position-x: 0.5vmin;
+//       }
+//       @if ($name == "shopList") {
+//         width: 12.27vmin;
+//       }
+//       @if ($name == "favoriates") {
+//         &.already {
+//           transition: 0.8s;
+//           @include icon(
+//             map-get($iconsList, "favoriates-icon_already"),
+//             9.5vmin,
+//             8.535vmin,
+//             false
+//           );
+//           background-size: 90%;
+//           background-position-x: 0.5vmin;
+//         }
+//       }
+//     }
+//   }
+// }
+
+// menu 樣式
+// @include menuStyle('bottom-line',red)
+@mixin menuStyle($style, $background){
+  @if $style == 'bottom-line-01'{
+    &::after{
+      width:70px;
+      height: 5px;
+      display:block;
+      margin:10px auto;
+      content:'';
+      background:$background;
+      // @include animation(menuActive, 1s, linear, false, 1, normal, forwards);
+    }
+  }
+  @if $style == 'bottom-line-02'{
+    &::after{
+      display:block;
+      content:'';
+      width:100%;
+      background:$background;
+      height: 5px;
+      @include animation(menuBottomLineMove, .3s, linear, false, 1, normal, forwards);
+    }
+  }
+  @if $style == 'bottom-line-03'{
+    .bar {
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        background: #757575;
+        width: 100%;
+        height: 1px;
+        &::before,
+        &::after {
+          content: '';
+          position: absolute;
+          background: $background;
+          width: 0;
+          height: 1px;
+          transition: .2s ease;
+        }
+        &:before {
+          left: 50%;
+        }
+        &:after {
+          right: 50%;
+        }
+    }
+  }
+  @if $style == 'dropdown-hover'{
+    ul{
+      li{
+          @include relative();
+          &:hover{
+              >ul{
+                  @include display(show);
+              }
+          }
+          ul{
+              // min-width:250px;
+              @include absolute(top 0% left 0%);
+              @include display(hide);
+              @include animation(dropdownFadeIn, .3s, linear, false, 1, normal, forwards);
+              ul{
+                  @include absolute(top 0% left 100%);
+                  @include display(hide);
+                  @include animation(subMenudropdownFadeIn, .3s, linear, false, 1, normal, forwards);
+              }
+          }
+      }
+    }
+  }
+  @if $style == 'tab-slider'{
+    ul{
+      position:relative;
+      li{
+          // width:25%;
+          padding:10px 25px;
+          text-align:center;
+          display: inline-block;
+          &.bottom-line{
+              display: inline-block;
+              position: absolute;
+              bottom: -10px;
+              left: 0;
+              width: 20%;
+              height: 5px;
+              background-color: tomato;
+              transition: 0.3s ease-in-out;
+              padding:0;
+          }
+          &:nth-child(1){
+              &:hover ~ .bottom-line.--slider{
+                left: 0% !important;
+              }
+              &.active ~ .bottom-line.--slider{
+                left: 0%;
+              }
+            }
+          &:nth-child(2){
+              &:hover ~ .bottom-line.--slider{
+                left: 25% !important;
+              }
+              &.active ~ .bottom-line.--slider{
+                left: 25% ;
+              }
+          }
+          &:nth-child(3){
+              &:hover ~ .bottom-line.--slider{
+                left: 50% !important;
+              }
+              &.active ~ .bottom-line.--slider{
+                left: 50%;
+              }
+          }
+          &:nth-child(4){
+              &:hover ~ .bottom-line.--slider{
+                left: 75% !important;
+              }
+              &.active ~ .bottom-line.--slider{
+                left: 75%;
+              }
+          }
+          &:nth-child(5){
+              &:hover ~ .bottom-line.--slider{
+                left: 104% !important;
+              }
+              &.active ~ .bottom-line.--slider{
+                left: 104%;
+              }
+          }
+      }
+  }
+  }
+}
+
+
+
+// list樣式重新計算
+// example: @include resetList()
+@mixin resetList() {
+  ol {
+    counter-reset: list;
+    padding: 0 0 0 20px;
+    li {
+      list-style: none;
+      &:before {
+        content: "(" counter(list) ") ";
+        counter-increment: list;
+      }
+    }
+  }
+}
+
+
+
+@include keyframes(menuActive){
+  0%{
+      width:0;
+  }
+  100%{
+      width:100%;
+  }
+}
+
+
+@include keyframes(menuBottomLineMove){
+  0%{
+      width:0;
+  }
+  100%{
+      width:100%;
+  }
+}
+
+@include keyframes(dropdownFadeIn){
+  0%{
+      @include opacity(0);
+      top:0%;
+  }
+  100%{
+      @include opacity(1);
+      top:98%;
+  }
+}
+
+// @include keyframes(dropdownFadeIn-sticky){
+//   0%{
+//       @include opacity(0);
+//       top:0%;
+//   }
+//   100%{
+//       @include opacity(1);
+//       top:100%;
+//   }
+// }
+
+@include keyframes(subMenudropdownFadeIn){
+  0%{
+      @include opacity(0);
+      left:0px;
+  }
+  100%{
+      @include opacity(1);
+      left:100%;
+  }
+}

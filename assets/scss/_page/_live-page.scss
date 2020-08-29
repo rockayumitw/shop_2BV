@@ -1,0 +1,277 @@
+.live-page{
+    .section-live-area{
+    }
+    .section-content{
+        @include relative();
+        overflow: hidden;
+        .video-area{
+            .video-box{
+                background:black;
+                @include relative();
+                overflow:hidden;
+                transition:.3s;
+                .video-mask{
+                    @include absolute(top 0);
+                    width: 100%;
+                    height: 100%;
+                    transition:.3s;
+                    background:map-get($colorGroup,'mask');
+                    .video-tip{
+                        &.__live{
+                            @include media-max(sm){
+                                transform: scale(0.8);
+                            }
+                        }
+                        &.__trailer{
+                            @include media-max(xs){
+                                transform: scale(0.8);
+                            }
+                        }
+                    }
+                }
+            }
+            video{
+                width:100%;
+            }
+            .btn-area{
+                @include absolute(top 50% right 0);
+                @include transform(translate(0,-50%));
+            }
+        }
+        .video-tab-panels{
+            @include relative();
+            min-width: 500px;
+            background:map-get($video-panels,'video-tab-panels');
+            opacity: 0.95;
+            @include media-max(xl){
+                min-width:400px;
+            }
+            @include media-max(lg){
+                height:100%;
+                @include absolute(right -450px);
+                @include transition(.3s);
+                &.active{
+                    @include transition(.3s);
+                    @include absolute(right 0px);
+                }
+            }
+            @include media-max(md){
+                min-width:300px;
+                &.active{
+                    @include relative();
+                }
+                @include relative(top 0px right 0px left 0px);
+            }
+            .video-subject-detail{
+                letter-spacing: 1px;
+                border-bottom: 1px solid map-get($video-panels,'border-bottom');
+                padding:10px;
+                .bi-tag{
+                    fill:map-get($colorGroup,'heather');
+                }
+                .subject-courses{
+                    font-size:12px;
+                }
+                .subject-people-count{
+                    font-size:12px;
+                    border-radius:30px;
+                    background:map-get($video-panels,'subject-object-count');
+                }
+            }
+            .tab-content{
+                padding: 10px;
+                width:100%;
+                overflow-y:auto;
+                max-height:calc( 100% - 40px );
+                @include absolute();
+                @include scrollBar('style-1',black);
+                @include media-max(md){
+                    @include relative();
+                    max-height:400px;
+                    height:400px;
+                }
+            }
+            .list-area{
+                // @include display(hide);
+                // ul.list{
+                //     li{
+                //         display:flex;
+                //         align-items: center;
+                //         justify-content: space-around;
+                //         padding: 5px 0px;
+                //         &.active{
+                //             transition:.3s;
+                //             background:map-get($video-panels,'list-hover');
+                //         }
+                //         &:hover{
+                //             background:map-get($video-panels,'list-hover');
+                //         }
+                //         .list-column{
+                //             padding:0 5px;
+                //             &:first-child{
+                //                 width:70px;
+                //             }
+                //             &:nth-child(2){
+                //                 width:calc(100% - 180px);
+                //                 .courses-title{
+                //                     @include font-size($courses-title-font-sizes,'tw');
+                //                 }
+                //                 .courses-detail{
+                //                     font-size:13px;
+                //                 }
+                //             }
+                //             &:nth-child(3){
+                //                 width:40px;
+                //                 .icon{
+                //                     font-size:20px;
+                //                 }
+                //             }
+                //             &:last-child{
+                //                 width:70px;
+                //                 .courses-timer{
+                //                     font-size:13px;
+                //                     font-style:italic;
+                //                 }
+                //             }
+                //         }
+                //         transition:.3s;
+                //     }
+                // }
+            }
+            .chat-area{
+                max-height:calc( 100% - 90px );
+                .chat-contents{
+                    @include font-size($live-chat-font-sizes,'tw');
+                }
+                .comment-item{
+                    align-items: center;
+                    >div{
+                        margin-right:5px !important;
+                    }
+                }
+                .message{
+                    word-break: break-all;
+                }
+            }
+            .chat-login-tip{
+                span{
+                    vertical-align:middle;
+                    @include font-size($live-chat-font-sizes,'tw');
+                }
+            }
+            .chat-message-area,.chat-login-tip{
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                background: map-get($video-panels,'chat-message-area');
+                padding: 10px 0;
+                input{
+                    width:calc(100% - 100px);
+                }
+                @include media-max(md){
+                    @include relative();
+                }
+                .emoji-area{
+                    .emoji-panels{
+                        width: 200px;
+                        height: 100px;
+                        background: map-get($video-panels,'chat-message-area');
+                        @include absolute(top -100px);
+                        @include animation(panelsMove,.1s,linear,false,false,normal,forwards);
+                        ul{
+                            list-style:none;
+                            max-height:100px;
+                            overflow:auto;
+                            li{
+                                float:left;
+                                padding:2px;
+                            }
+                        }
+                    }
+                }
+                .input-message-area{
+                    width:calc(100% - 110px);
+                    position:relative;
+                    @include menuStyle('bottom-line-03',map-get($video-panels,'text-color'));
+                    textarea{
+                        width:calc(100% - 120px);
+                        resize: none;
+                        line-height:20px;
+                        background:transparent;
+                        // background: map-get($video-panels,'list-hover');;
+                        border: 0;
+                        color:map-get($video-panels,'text-color');
+                        @include scrollBar('style-1',black);
+                        &:focus ~ .bar {
+                            &::before,
+                            &::after {
+                              width: 50%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .section-courses-content{
+        @include relative(top 0px);
+            .tabs{
+                // background:white;
+                @include relative(top -20px);
+                @include media-max(lg){
+                    @include relative(top 0px);
+                }
+                // @include menuStyle('tab-slider', #000);
+                ul{
+                    border-bottom:0;
+                    box-shadow:-2px 5px 7px rgba(0,0,0,0.3);
+                    li{
+                        @include media-max(lg){
+                            width:calc(100% / 4);
+                            text-align:center;
+                        }
+                        a{
+                            padding:0;
+                            border:0;
+                            color:map-get($colorGroup,'mineShaft');
+                            // @include transition(.3s);
+                            div{
+                                @include transition(.2s);
+                                padding: 25px 30px 15px 30px;
+                                @include media-max(sm){
+                                    padding: 5px 10px;
+                                }
+                            }
+                            &.active{
+                                div{
+                                    @include transition(.3s);
+                                    color:map-get($colorGroup,'treePoppy') !important;
+                                    padding: 30px 30px 10px 30px;
+                                    @include media-max(sm){
+                                        padding: 5px 10px;
+                                    }
+                                }
+                                &::after{
+                                    content:'';
+                                    width:100%;
+                                    height:5px;
+                                    display:block;
+                                    background:map-get($colorGroup,'treePoppy');
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+    }
+}
+
+
+@include keyframes (panelsMove){
+    0%{
+        top: 0px
+    }
+    100%{
+        top: -100px
+    }
+}

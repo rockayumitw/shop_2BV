@@ -1,0 +1,116 @@
+.media-card{
+    height:100%;
+    @include relative();
+    @include display(show);
+    @include transform(scale(0.9));
+    @include transition(.3s);
+    &:hover{
+      @include transition(.3s);
+      @include transform(scale(0.95));
+    }
+    .bookmark-area{
+      @include absolute(top 58% right 5%);
+      @include z-index(bookmark);
+      .icon-bookmark{
+        cursor: pointer;
+      }
+    }
+    .b-rating-star{
+      padding:0 0.15em;
+    }
+    a{
+      text-decoration:none;
+      color:map-get($cardGroup,'link-color');
+      @include display(show);
+      .card{
+        @include relative();
+        height: 360px;
+        max-width:90% !important;
+        @include media-max(sm){
+          max-width:100% !important;
+        }
+        float:right;
+        @include borderRadius(15px);
+        img{
+          min-height:185px;
+          max-height:185px;
+          width:290px;
+          max-width:100%;
+          @include borderRadius(15px);
+        }
+        &:hover{
+          @include transition(.3s);
+          @include box-shadow(0px, 2px, 10px, map-get($colorGroup,'mask'), false);
+        }
+        .card-body{
+          .form-control{
+            padding:0;
+          }
+          .b-avatar{
+            @include absolute(top 48% left 0);
+            @include translate(-50%,-50%);
+            border:5px solid map-get($cardGroup,'avater-border-color');
+          }
+          h4{
+            @include translate(4%,-55%);
+            padding: 2px 40px;
+            color:map-get($cardGroup,'h4-color');
+            line-height: 40px;
+            max-width:80%;
+            @include borderRadius(50px);
+            @include absolute(top 48% left 0);
+            @include gradient(#FC9E20, #ED6F3F, horizontal);
+            @include ellipse('multiline',1)
+          }
+          img{
+            width:100%;
+            min-height:auto;
+          }
+          p{
+            max-width:225px;
+          }
+          .className{
+            max-width:225px;
+            @include font-size($card-className-font-sizes,'tw');
+            @include ellipse('multiline',2);
+          }
+        }
+        .card-footer{
+          border-top:0px;
+          background:transparent;
+        }
+      }
+    }
+    &.__other-courses-class{
+      display:flex;
+      justify-content: center;
+        .card{
+            height: 100%;
+            max-width:100% !important;
+            // border-radius:0px;
+            @include borderRadius(0px);
+            img{
+                min-height:auto;
+                max-height:100%;
+                @include borderRadius(0px);
+            }
+            .card-body{
+              padding:8px 8px 0px 8px;
+              position:relative;
+                .bookmark-area{
+                  @include absolute(top 10% right 3%);
+                }
+                .card-text{
+                  margin-bottom:0;
+                  max-width: calc(100% - 30px);
+                  .className{
+                    @include ellipse('multiline',1)
+                  }
+                }
+            }
+            .card-footer{
+              padding:0px 8px 8px 8px;
+            }
+        }
+    }
+}

@@ -1,0 +1,50 @@
+.search-page{
+    .search-area{
+        border-radius:50px;
+    }
+    .dropdown{
+        .btn{
+            background:transparent;
+            color:map-get($colorGroup,'gray');
+            font-size:18px !important;
+            outline-color:none;
+            &[aria-expanded = "true"]{
+                color:map-get($colorGroup,'treePoppy');
+                font-size:18px;
+            }
+            &:hover{
+                color:map-get($colorGroup,'treePoppy');
+            }
+            @include media-max(sm){
+                .btn-search{
+                    svg{
+                        display:block !important;
+                    }
+                }
+            }
+        }
+        ul{
+            border:none;
+            padding:0;
+            left:-30px !important;
+            min-width:8rem;
+            li{
+                a{
+                    color:map-get($colorGroup,'gray');
+                    padding:5px;
+                    text-align:center;
+                    background:transparent;
+                    @include transition(.3s);
+                    &:hover{
+                        color:map-get($colorGroup,'treePoppy');
+                        @include transition(.3s);
+                    }
+                }
+                border-bottom:1px solid map-get($colorGroup,'alto');
+                &:last-child{
+                    border-bottom:0px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,101 @@
+$icon-name:'bookmark','avatar','chat','page','stars';
+$iconImageGroup:(
+    'bookmark-hover':'../../assets/_img/_icon/icon-bookmark-hover.png',
+    'bookmark-normal':'../../assets/_img/_icon/icon-bookmark-normal.png',
+    'avatar-hover':'../../assets/_img/_icon/icon-avatar-hover.png',
+    'avatar-normal':'../../assets/_img/_icon/icon-avatar-normal.png',
+    'chat-hover':'../../assets/_img/_icon/icon-chat-hover.png',
+    'chat-normal':'../../assets/_img/_icon/icon-chat-normal.png',
+    'page-hover':'../../assets/_img/_icon/icon-page-hover.png',
+    'page-normal':'../../assets/_img/_icon/icon-page-normal.png',
+    'stars-hover':'../../assets/_img/_icon/icon-stars-hover.png',
+    'stars-normal':'../../assets/_img/_icon/icon-stars-normal.png',
+);
+
+@each $name in $icon-name{
+    &.icon-#{$name}{
+        width:26px;
+        height:24px;
+        padding:0px !important;
+        background:url(map-get($iconImageGroup,$name+'-normal'));
+        background-repeat:no-repeat;
+        transition:.3s;
+        margin-right:2px;
+        background-position:center center;
+        // &.__active{
+        //     transition:.3s;
+        //     background:url(map-get($iconImageGroup,$name+'-hover'));
+        //     background-repeat:no-repeat;
+        //     background-position:center center;
+        // }
+        @if($name == 'bookmark'){
+            cursor: pointer;
+            background:url(map-get($iconImageGroup,'bookmark-hover'));
+            width:22px;
+            height:32px;
+            background-repeat:no-repeat;
+            transition:.3s;
+            &.__unCollect{
+                background:url(map-get($iconImageGroup,'bookmark-normal'));
+                background-repeat:no-repeat;
+                transition:.3s;
+            }
+        }
+    }
+}
+
+
+.tabs{
+    ul{
+        li{
+            &:nth-child(1){
+                a{
+                    &[aria-selected="true"]{
+                        .icon-avatar{
+                            transition:.3s;
+                            background:url(map-get($iconImageGroup,'avatar-hover'));
+                            background-repeat:no-repeat;
+                            background-position:center center;
+                        }
+                    }
+                }
+            }
+            &:nth-child(2){
+                a{
+                    &[aria-selected="true"]{
+                        .icon-chat{
+                            transition:.3s;
+                            background:url(map-get($iconImageGroup,'chat-hover'));
+                            background-repeat:no-repeat;
+                            background-position:center center;
+                        }
+                    }
+                }
+            }
+            &:nth-child(3){
+                a{
+                    &[aria-selected="true"]{
+                        .icon-stars{
+                            transition:.3s;
+                            background:url(map-get($iconImageGroup,'stars-hover'));
+                            background-repeat:no-repeat;
+                            background-position:center center;
+                        }
+                    }
+                }
+            }
+            &:nth-child(4){
+                a{
+                    &[aria-selected="true"]{
+                        .icon-page{
+                            transition:.3s;
+                            background:url(map-get($iconImageGroup,'page-hover'));
+                            background-repeat:no-repeat;
+                            background-position:center center;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

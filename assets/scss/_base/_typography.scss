@@ -1,0 +1,410 @@
+$sans-serif: "Source Sans Pro", Helvetica, Verdana, sans-serif;
+$serif: Merriweather, Georgia, "Times New Roman", serif;
+$mono: "Source Code Pro", Courier;
+
+// 換算單位
+//  0.75em = 75% = 9pt = 12px
+
+$p-font-sizes: ( // span | p  : 16pt
+  null : 13px,
+  xs : 13px,
+  sm : 13px,
+  md : 13px,
+  lg : 13px,
+  xl : 13px
+);
+
+$h1-font-sizes: ( //大標 | slider | slogan  : 32pt
+  null  : 26px,
+  xs : 26px,
+  sm : 26px,
+  md : 32px,
+  lg : 32px,
+  xl : 32px
+);
+
+$h2-font-sizes: ( // slider | title  : 16pt
+  null : 16px,
+  xs : 14px,
+  sm : 18px,
+  md : 18px,
+  lg : 22px,
+  xl : 22px
+);
+
+// $h3-font-sizes: ( //main - title
+//   null : 20pt,
+//   xs : 4.7vmin,
+//   sm : 4.7vmin,
+//   md : 15pt,
+//   lg : 18pt,
+//   xl : 22.7pt
+// );
+
+$h4-font-sizes: ( //item - title card
+  null : 16px,
+  xs : 16px,
+  sm : 18px,
+  md : 18px,
+  lg : 20px,
+  xl : 20px
+);
+
+$h5-font-sizes: (
+  null : 16px,
+  xs : 14px,
+  sm : 16px,
+  md : 16px,
+  lg : 18px,
+  xl : 18px
+);
+
+// card - name
+$card-className-font-sizes: ( // item - card text
+  null : 18px,
+  xs : 18px,
+  sm : 18px,
+  md : 18px,
+  lg : 20px,
+  xl : 20px
+);
+
+// live-courses-discuss
+$subject-title-font-sizes:(
+  null : 20px,
+  xs : 18px,
+  sm : 18px,
+  md : 18px,
+  lg : 20px,
+  xl : 20px
+);
+
+$courses-video-list-font-sizes:(
+  null : 20px,
+  xs : 18px,
+  sm : 16px,
+  md : 16px,
+  lg : 17px,
+  xl : 18px
+);
+
+$courses-subTitle-font-sizes:(
+  null : 26px,
+  xs : 26px,
+  sm : 24px,
+  md : 24px,
+  lg : 26px,
+  xl : 26px
+);
+
+
+// live-chat
+$live-chat-font-sizes:(
+  null : 14px,
+  xs : 14px,
+  sm : 14px,
+  md : 14px,
+  lg : 15px,
+  xl : 15px
+);
+
+$header-menu-font-size:(  // 20pt
+  null : 20px,
+  xs : 20px,
+  sm : 18px,
+  md : 18px,
+  lg : 20px,
+  xl : 20px  
+);
+
+// $language-font-size:(
+//   null : 14pt,
+//   xs : 13pt,
+//   sm : 11pt,
+//   md : 10pt,
+//   lg : 12pt,
+//   xl : 12pt 
+// );
+
+// link | 繳交作業card | btn
+$link-font-size:(  //link
+  null : 14px,
+  xs : 14px,
+  sm : 14px,
+  md : 14px,
+  lg : 16px,
+  xl : 16px 
+);
+
+// 課程評價
+$recommend-font-size:(
+  null : 60px,
+  xs : 50px,
+  sm : 58px,
+  md : 58px,
+  lg : 60px,
+  xl : 60px
+);
+
+$courses-rating-comment-font-size:(
+  null : 18px,
+  xs : 16px,
+  sm : 16px,
+  md : 16px,
+  lg : 18px,
+  xl : 18px
+);
+
+// 價格
+$price-font-size:(
+  null : 50px,
+  xs : 30px,
+  sm : 48px,
+  md : 48px,
+  lg : 40px,
+  xl : 48px
+);
+
+$tag-font-size:(
+  null : 14px,
+  xs : 14px,
+  sm : 14px,
+  md : 14px,
+  lg : 15px,
+  xl : 15px
+);
+
+// comment-media-feature
+$comment-authorName-font-size:(
+  null : 18px,
+  xs : 16px,
+  sm : 16px,
+  md : 16px,
+  lg : 18px,
+  xl : 18px
+);
+
+// comment-media-feature
+$comment-title-font-size:(
+  null : 18px,
+  xs : 16px,
+  sm : 16px,
+  md : 16px,
+  lg : 18px,
+  xl : 18px
+);
+
+// comment-tool
+$comment-tool-font-size:(
+  null : 18px,
+  xs : 13px,
+  sm : 13px,
+  md : 13px,
+  lg : 15px,
+  xl : 15px
+);
+
+// comment-content
+$comment-content-font-size:(
+  null : 15px,
+  xs : 13px,
+  sm : 13px,
+  md : 13px,
+  lg : 15px,
+  xl : 15px
+);
+
+
+// courses-tab-panels-content
+$courses-tab-panels-content-font-size:(
+  null : 16px,
+  xs : 14px,
+  sm : 16px,
+  md : 16px,
+  lg : 18px,
+  xl : 18px
+);
+
+// $subTitle-font-size:(
+//   null : 18pt,
+//   xs : 5vmin,
+//   sm : 4.5vmin,
+//   md : 14pt,
+//   lg : 18pt,
+//   xl : 18pt 
+// );
+
+// $slogan-font-size:(
+//   null : 14.5pt,
+//   xs : 3vmin,
+//   sm : 13pt,
+//   md : 10pt,
+//   lg : 13pt,
+//   xl : 14pt
+// );
+
+//footer
+$footer-font-size-menu:(  // 13px
+  null : 13px,
+  xs : 13px,
+  sm : 13px,
+  md : 13px,
+  lg : 13px,
+  xl : 13px 
+);
+
+$footer-font-size-privacy:(    // 13px
+  null : 13px,
+  xs : 13px,
+  sm : 13px,
+  md : 13px,
+  lg : 13px,
+  xl : 13px 
+);
+// $footer-font-size-companeyName:(
+//   null : 18pt,
+//   xs : 4.5vmin,
+//   sm : 19pt,
+//   md : 11.5pt,
+//   lg : 12.5pt,
+//   xl : 12.5pt 
+// );
+
+// $footer-font-size-message:(
+//   null : 11pt,
+//   xs : 3vmin,
+//   sm : 13pt,
+//   md : 10pt,
+//   lg : 11pt,
+//   xl : 11pt 
+// );
+
+// font-size: ($sizeValue) + px;
+// line-height: ($line) + px;
+// font-size: ($sizeValue / 16) + rem;
+// line-height: ($line / 16) + rem;
+
+@mixin font-size($fs-map,$them) {
+  @each $fs-breakpoint, $fs-font-size in $fs-map {
+    @if $fs-breakpoint == null {
+      font-size: $fs-font-size !important;
+      line-height:($fs-font-size * 1.6) !important;
+    }
+    @else {
+      @include media-min($fs-breakpoint){
+        @if($them == 'en'){
+          // font-size:($fs-font-size / 1.3 ) !important;
+          // line-height: ($fs-font-size / 0.7) !important;
+          font-size:$fs-font-size !important;
+          line-height: ($fs-font-size * 1.52) !important;
+        }
+        @if($them == 'jp'){
+          // font-size:($fs-font-size / 1.39 ) !important;
+          // line-height: ($fs-font-size / 0.8) !important;
+          font-size:$fs-font-size !important;
+          line-height: ($fs-font-size * 1.52) !important;
+        }
+        @if($them == 'ko'){
+          // font-size:($fs-font-size / 1.4 ) !important;
+          // line-height: ($fs-font-size / 0.8) !important;
+          font-size:$fs-font-size !important;
+          line-height: ($fs-font-size * 1.52) !important;
+        }
+        @if($them == 'cn'){
+          font-size:$fs-font-size !important;
+          line-height: ($fs-font-size * 1.52) !important;
+        }
+        @if($them == 'tw'){
+          font-size:$fs-font-size !important;
+          line-height: ($fs-font-size * 1.2) !important;
+        }
+      }
+    }
+  }
+}
+
+  @mixin them($lang){
+    @if $lang == 'them-TW'{
+      @extend %them-tw;
+    }
+    @if $lang == 'them-JP'{
+      @extend %them-JP;
+    }
+    @if $lang == 'them-EN'{
+      @extend %them-EN;
+    }
+    @if $lang == 'them-KO'{
+      @extend %them-KO;
+    }
+    @if $lang == 'them-CN'{
+      @extend %them-CN;
+    }
+  }
+
+////共用-不分them才使用
+// h1 {//carousel
+// color:map-get($colorGroup,'deepBlueGreen');
+//     @include font-size($h1-font-sizes,'tw');
+// } 
+// h2 {
+//   //main
+//   color: map-get($mainContentGroup, "normal-color");
+//   @include font-size($h2-font-sizes,'tw');
+// }
+// h3 {
+//   color:map-get($colorGroup,'deepBlueGreen');
+//   @include font-size($h3-font-sizes,'tw');
+// }
+// h4 {
+//   color:map-get($colorGroup,'gray');
+//   @include font-size($h4-font-sizes,'tw');
+// }
+// h5 {
+//   color: map-get($mainContentGroup, "color-blue");
+// }
+// p{
+//     letter-spacing:1px;
+//     color:map-get($colorGroup,'gray');
+//     @include font-size($p-font-sizes,'tw');
+// }
+
+// header{
+//   .menu{
+//     @include font-size($header-menu-font-size,'');
+//   }
+// }
+
+// .carouselArea{
+//   .subTitle{
+//     @include font-size($subTitle-font-size,'');
+//     span{
+//         @include font-size($p-font-sizes,'');
+//     }
+//   }
+//   .slogan{
+//       @include font-size($slogan-font-size,'');
+//   }
+// }
+
+// footer{
+//   address {
+//     @include font-size($footer-font-size-companeyName,'');
+//   }
+//   p{
+//     @include font-size($footer-font-size-message,'');
+//   }
+//   ul{
+//     @include font-size($footer-font-size-companeyName,'');
+//     a{
+//       @include font-size($footer-font-size-companeyName,'');
+//     }
+//     li{
+//       a{
+//         @include font-size($footer-font-size-privacy,'');
+//       }
+//     }
+//   }
+//   .footerPrivcy{
+//     @include font-size($footer-font-size-privacy,'');
+//   }
+// }

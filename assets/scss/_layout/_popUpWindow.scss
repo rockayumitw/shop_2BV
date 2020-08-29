@@ -1,0 +1,98 @@
+// sweeter - mobile
+//   .swal2-popup{
+//     width:40em;
+//     padding:35px 60px;
+//     @include borderRadius(1.3125em);
+//     @include media-max(md){
+//         padding:35px 20px;
+//     }
+//     .swal2-title{
+//         @include media-max(md){
+//             font-size:1.7em;  
+//         }
+//     }
+//     .swal2-content{
+//         @include media-max(md){
+//             font-size:0.9em;  
+//         }
+//     }
+//     .swal2-close{
+//         @include transition(.3s);
+//         &:hover{
+//             @include transition(.3s);
+//             color:map-get($colorGroup,'blue');
+//         }
+//     }
+//   }
+
+// modal - login
+
+.modal{
+    &.__login{
+        .modal-dialog{
+            .modal-content{
+                @include borderRadius(1.3rem);
+                background-color:transparent;
+                overflow:hidden;
+                .modal-header{
+                    background:map-get($colorGroup,'rhino');
+                    border-bottom:0;
+                    padding:2.5rem 1rem 1rem 1rem;
+                    .title{
+                        font-size:24px;
+                    }
+                    .btn-close{
+                        @include absolute(top 20px right 20px);
+                        opacity:1;
+                        &:hover{
+                            background:transparent;
+                        }
+                    }
+                }
+                .modal-body{
+                    background:map-get($colorGroup,'rhino');
+                    color:white;
+                    padding:0 4rem;
+                    @include media-max(sm){
+                        padding:0 2rem;
+                    }
+                    .form-group {
+                        max-width:330px;
+                        margin:0 auto 1rem auto;
+                    }
+                    .valid-feedback{
+                        text-align:center;
+                        color:map-get($colorGroup,'treePoppy');
+                        background:map-get($colorGroup,'cloudBurst');
+                        border-radius:20px;
+                        max-width: 250px;
+                        margin:10px auto 5px auto;
+                        padding:5px 0;
+                        @include font-size($link-font-size,'tw');
+                    }
+                }
+                .modal-footer{
+                    position:initial;
+                    background-color:white;
+                }
+            }
+        }
+    }
+}
+
+///tost
+// .b-toaster{
+//     .toast{
+//         border:0px;
+//         background-color:transparent !important;
+//         .toast-header{
+//             display:none;
+//         }
+//         .toast-body{
+//             text-align:center;
+//             border:0px;
+//             background:$mask;
+//             color:map-get($colorGroup,'white');
+//         }
+//     }
+// }

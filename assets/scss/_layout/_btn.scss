@@ -1,0 +1,251 @@
+// example: btn-login
+$btn-name:'login','logout','search','submit','close','hamburger','buyClass', 'participate','back','live-message-submit','reservation','commit-homework','clear','courses-discuss-submit','edit','remove','chat','fb','share','line';
+
+.btn{
+    position:relative;
+    overflow:hidden;
+    border:0px;
+    padding:5px 10px !important;
+    line-height:25px !important;
+    @include font-size($link-font-size,'tw');
+    @each $name in $btn-name {
+        &.btn-#{$name}{
+            @if($name == 'login'){
+                @include btn-style('rectangle-2',map-get($headerGroup,'normal-color'),map-get($headerGroup,'tool-btn-normal-color'),map-get($headerGroup,'normal-color'),map-get($headerGroup,'tool-btn-hover-color'));
+                &.__pc{
+                    @include display(show);
+                    @include media-max(lg){
+                        @include display(hide);
+                    }
+                    @include media-max(md){
+                        @include display(hide);
+                    }
+                    @include media-max(sm){
+                        @include display(hide);
+                    }
+                    @include media-max(xs){
+                        @include display(hide);
+                    }
+                }
+                &.__phone{
+                    background:none !important;
+                    @include display(hide);
+                    @include media-max(lg){
+                        @include display(show);
+                    }
+                    @include media-max(md){
+                        @include display(show);
+                    }
+                    @include media-max(sm){
+                        @include display(show);
+                    }
+                    @include media-max(xs){
+                        @include display(show);
+                    }
+                }
+                &.__panels{
+                    background:transparent !important;
+                    border:1px solid white !important;
+                    color:white !important;
+                }
+            }
+            @if($name == 'search'){
+                background:none !important;
+                margin-top: 3px;
+                @include display(show);
+                @include media-max(lg){
+                    padding: 0 !important;
+                    margin-top: 0px;
+                    max-height:55px;
+                    @include z-index(btn-search);
+                    @include fixed(right 18px bottom 80px);
+                    &.__md{
+                        @include absolute(right 18px top -300px);
+                    }
+                    &.__md-inner-fixed{
+                        @include fixed(bottom 140px right 20px);
+                    }
+                    &.__md-inner-sticky{
+                        @include absolute(top -135px right 20px);
+                    }
+                }
+                @include media-max(md){
+                    @include fixed(right 18px bottom 0px);
+                    &.__xs{
+                        @include absolute(right 18px top -22px);
+                    }
+                    &.__sm-inner-fixed{
+                        @include fixed(bottom 140px right 20px);
+                    }
+                    &.__sm-inner-sticky{
+                        @include absolute(top -135px right 20px);
+                    }
+                }
+                @include media-max(sm){
+                    &.__xs-inner-sticky{
+                        @include absolute(right 18px bottom 350px);
+                    }
+                    &.__xs-inner-fixed{
+                        @include fixed(right 18px bottom 115px);
+                    }
+                }
+                svg{
+                    font-size:20px;
+                    color:map-get($headerGroup,'tool-btn-normal-color');
+                    @include display(show);
+                    @include transition(.3s);
+                        &:hover{
+                            @include transition(.3s);
+                            color:map-get($headerGroup,'tool-btn-hover-color');
+                        }
+                        @include media-max(lg){
+                            @include display(hide);
+                        }
+                }
+                img{
+                    @include display(hide);
+                    @include media-max(lg){
+                        @include display(show);
+                    }
+                }
+            }
+            @if($name == 'submit'){
+                background:map-get($colorGroup,'treePoppy');
+                color:white;
+                padding:10px 90px !important;
+                @include font-size($h2-font-sizes,'tw');
+                @include media-max(sm){
+                    padding:10px 50px !important;
+                }
+            }
+            @if($name == 'close' or $name == 'live-message-submit'){
+                background:transparent !important;
+            }
+            @if($name == 'hamburger'){
+                width: 50px;
+                height: 50px;
+                border:none;
+                margin-right:20px;
+                @include borderRadius(0);
+                &:hover{
+                    background:map-get($headerGroup,'lg-hover-color');
+                }
+                @include hamburger-style('rotate-x');
+                @include media-max(lg){
+                    @include absolute(left 0);
+                }
+                i{
+                    &:nth-child(1){
+                        width:100%;
+                    }
+                    &:nth-child(2){
+                        width:calc(100% / 1.5);
+                    }
+                    &:nth-child(3){
+                        width:calc(100% / 3);
+                    }
+                }
+            }
+            @if($name == 'buyClass'){
+                font-size:18px !important;
+                padding: 5px 60px !important;
+                background:map-get($colorGroup,'treePoppy');
+                &:hover{
+                    background:darken(map-get($colorGroup,'treePoppy'),5%);
+                }
+                @include absolute(top 10px right 40px);
+                @include media-max(xl){
+                    @include absolute(top 10px right 0px);
+                }
+                @include media-max(lg){
+                    padding: 10px 60px !important;
+                    // @include absolute(top 0px right 0px);
+                    @include relative(top 0px);
+                }
+                @include media-max(sm){
+                    @include relative();
+                    padding: 10px 20px !important;
+                }
+            }
+            @if($name == 'participate' or $name == 'reservation' or $name == 'logout' or $name == 'courses-discuss-submit'){
+                padding:8px 30px !important;
+                color:white !important;
+                background:map-get($colorGroup,'treePoppy') !important;
+                &:hover{
+                    background:darken(map-get($colorGroup,'treePoppy'),5%) !important;
+                }
+            }
+            @if($name == 'clear'){
+                padding:8px 30px !important;
+            }
+            @if($name == 'back'){
+                top:0 !important;
+                padding:15px 20px !important;
+                background:map-get($colorGroup,'red');
+                @include media-max(lg){
+                    padding:10px !important;
+                }
+                @include media-max(sm){
+                    display:none;
+                }
+                img{
+                    margin-top: -5px;
+                }
+            }
+            @if($name == 'commit-homework'){
+                padding:8px 30px !important;
+                &.__changePage{
+                    background:map-get($colorGroup,'FountainBlue');
+                }
+                &.__submit{
+                    background:map-get($colorGroup,'treePoppy') !important;
+                    &:hover{
+                        background:darken(map-get($colorGroup,'treePoppy'),5%) !important;
+                    }
+                }
+                &.__save{
+                    background:map-get($colorGroup,'gray');
+                }
+            }
+            @if($name == 'edit'){
+                font-size:15px !important;
+                padding:3px 6px !important;
+                border:1px solid map-get($colorGroup,'japaneseLaurel');
+                margin-top: -2px;
+                img{
+                    margin-top: -2px;
+                }
+            }
+            @if($name == 'remove'){
+                font-size:15px !important;
+                padding:3px 6px !important;
+                border:1px solid map-get($colorGroup,'red');
+                margin-top: -2px;
+                img{
+                    margin-top: -2px;
+                }
+            }
+            @if($name == 'chat'){
+                color:map-get($colorGroup,'RegalBlue');
+                // border:1px solid map-get($colorGroup,'RegalBlue');
+            }
+            @if($name == 'fb' or $name == 'line' or $name == 'share'){
+                @include media-max(md){
+                    display: flex !important;
+                    justify-content: center;
+                    align-items: center;
+                    width: 80px;
+                    height: 80px;
+                }
+                @include media-max(sm){
+                    width:70px;
+                    height:70px;
+                }
+                @include media-max(xs){
+                    width:50px;
+                    height:50px;
+                }
+            }
+        }
+    }
+}

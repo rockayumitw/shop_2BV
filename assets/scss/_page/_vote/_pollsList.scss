@@ -1,0 +1,126 @@
+.pollsList{
+  .searchArea{
+    input{
+      @include calc( width, 60%,'100% - 130px');
+      @include media-max(md){
+          @include calc( width, 60%,'100% - 110px');
+      }
+    }
+  }
+    .media-item{
+        overflow:hidden;
+        .item-loading {
+            .item-img {
+              overflow: hidden;
+              @include imgBg(false, 100%, 250px, map-get($colorGroup,'daintree'), '', no-repeat, '');
+              @include media-max(lg){
+                height:250px;
+              }
+              @include relative();
+              @include borderRadius(5px);
+              @include border(bottom,1px,solid,map-get($colorGroup,'daintree'));
+              @include relative();
+                &:after {
+                  display: block;
+                  content: "";
+                  width: 100%;
+                  margin-top: 79.31034%;
+                }
+                &:before{
+                 @include loadingItemStyle('style-1',#002e46ab,false,false);
+                }
+              }
+            .item-bottom {
+              padding: 5px 20px;
+              overflow: hidden;
+              @include relative();
+              .item-title{
+                height:80px;
+              }
+              .item-quection{
+                height:60px;
+              }
+              .item-rules,.item-date{
+                height: 30px;
+              }
+              .item-btn{
+                height: 40px;
+                width:150px;
+              }
+              .item-title,.item-quection,.item-select,.item-btn, .item-rules,.item-date{
+                background: map-get($colorGroup,'daintree');
+                margin-bottom: 10px;
+                overflow: hidden;
+                @include relative();
+                &:before{
+                  @include loadingItemStyle('style-1',#002e46ab,#00293d,#0179b9ab);
+                }
+              }
+            }
+        }
+        .item-page{
+          margin:0 auto;
+          width:220px;
+          height:50px;
+          background: map-get($colorGroup,'daintree');
+          margin-bottom: 10px;
+          overflow: hidden;
+          @include relative();
+            &:before{
+              @include loadingItemStyle('style-1',#002e46ab,#00293d,#0179b9ab);
+            }
+        }
+        .item{
+            @include opacity(.9);
+            @include transition(1s);
+            border-bottom:1px solid map-get($colorGroup,'blumine');
+            .item-img{
+                overflow:hidden;
+                @include relative();
+                @include transition(1s);
+                @include borderRadius(5px);
+                @include mask(rgba(0,0,0,0.2));
+                @include imgBg('',100%,245px,false,cover,no-repeat,top);
+                @include media-max(md){
+                    height:250px;
+                }
+                .pic{
+                  @include imgBg('',100%,450px,false,cover,no-repeat,top);
+                }
+            }
+            .date{
+              font-size:10pt !important;
+            }
+            &:hover{
+              @include opacity(1);
+              @include transition(1s);
+              .item-img{
+                @include mask(rgba(0,0,0,0.1));
+              }
+            }
+            h2{
+                letter-spacing: 2px;
+                line-height:45px !important;
+                margin-top:0px;
+                @include ellipse('multiline',2);
+            }
+            div{
+                @include relative();
+                .vote-rules{
+                    @include absolute(bottom 15px);
+                    @include media-max(md){
+                        @include relative(bottom 0);
+                    }
+                }
+                .btn-vote{
+                    @include absolute(top 50%);
+                    @include transform(translate(0, -40px));
+                    @include media-max(lg){
+                        @include relative(bottom 0);
+                        @include transform(translate(0, -15px));
+                    }
+                }
+            }
+        }
+    }
+}

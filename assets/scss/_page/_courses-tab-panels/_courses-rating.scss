@@ -1,0 +1,27 @@
+// 課程評價
+.courses-rating{
+    .courses-rating-box{
+        .courses-score{
+            @include font-size($recommend-font-size,'tw');
+            font-weight:bold;
+        }
+        .courses-rating-comment{
+            @include font-size($courses-rating-comment-font-size,'tw');
+        }
+    }
+    .courses-rating-message{
+        // max-width:600px;
+        .courses-rating-message-top{
+            max-width:350px;
+        }
+        .courses-rating-message-bottom{
+            textarea{
+                width:100%;
+                resize:none;
+                padding:12px;
+                border-radius:10px;
+                background:lighten(map-get($colorGroup,'alto'),8%);
+            }
+        }
+    }
+}

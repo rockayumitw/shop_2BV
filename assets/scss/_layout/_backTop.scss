@@ -1,0 +1,27 @@
+//blackTop
+// .back-top{
+//     display: block;
+//     width:70px;
+//     height:70px;
+//     background:$footer-Bg-Color;
+//     @include rounded(20px);
+//     @include z-index(back_top);
+//     @include sticky(top bottom);
+//     @include transition(all 0.2s linear 0s);
+//     @include transform(translateY(40px)rotate(-45deg));
+//     i{
+//         color: $footer-color;
+//         font-size:30px;
+//         margin-left:5px;
+//         margin-top:-29px;
+//         @include transform (rotate(45deg));
+//         @include absolute(top 50% left 50%);
+//     }
+//     &:hover{
+//         i{
+//             color:map-get($link,'normal');
+//             @include transition(all 0.2s linear 0s);
+//         }
+//     }
+// }
+

@@ -1,0 +1,297 @@
+.home {
+  @include fixed-top-blank-height-use();
+  background:map-get($colorGroup,'alto');
+  .slider{
+    overflow: hidden;
+    .swiper-button-prev,.swiper-button-next{
+      width:55px;
+      @include media-max(lg){
+        width:35px;
+      }
+      @include media-max(sm){
+        width:20px;
+      }
+      &::after{
+        content:'';
+      }
+    }
+    .swiper-button-prev{
+      left:50px;
+    }
+    .swiper-button-next{
+      right:50px;
+    }
+    .swiper-pagination-bullets{
+      transition:1s;
+      @include media-max(lg){
+        @include relative(bottom 0);
+      }
+      .swiper-pagination-bullet{
+        margin: 0 5px;
+        width: 5px;
+        height: 5px;
+      }
+      .swiper-pagination-bullet-active{
+        transition:1s;
+        width:40px;
+        border-radius:10px;
+        background:map-get($colorGroup,'mask');
+      }
+    }
+    .item-loading {
+      .item-pic {
+        overflow: hidden;
+        @include imgBg(false, 100%, 360px, lighten(map-get($colorGroup,'silver'),10%), '', no-repeat, '');
+        @include relative();
+        @include borderRadius(10px);
+        @include relative();
+          &:after {
+            display: block;
+            content: "";
+            width: 100%;
+            margin-top: 79.31034%;
+          }
+          &:before{
+            @include loadingItemStyle('style-1',lighten(map-get($colorGroup,'silver'),9%),false,false);
+          }
+        }
+      }
+    }
+    main {
+      .section-online-streaming {
+        overflow: hidden;
+        @include media-max(md) {
+          height: auto;
+        }
+        .online-streaming-sliders-area{
+          max-width:1400px;
+          @include media-max(sm){
+            max-width:100%;
+          }
+          margin:0 auto;
+          .swiper { // 熱門講師區塊
+            height: 760px;
+            width: 100%;
+            .swiper-slide {
+              max-height: 360px;
+              margin-right: 0;
+              padding:0 10px;
+            }
+            .swiper-button-prev,.swiper-button-next{
+              &::after{
+                content:'';
+              }
+            }
+            .swiper-pagination{
+              bottom:10px;
+              .swiper-pagination-bullet{
+                margin: 0 5px;
+                width: 5px;
+                height: 5px;
+              }
+              .swiper-pagination-bullet-active{
+                @include transition(.5s);
+                background:map-get($colorGroup,'rhino');
+              }
+            }
+          }
+        }
+      .item-loading {
+        .item-pic {
+          overflow: hidden;
+          @include imgBg(false, 100%, 360px, lighten(map-get($colorGroup,'silver'),10%), '', no-repeat, '');
+          @include relative();
+          @include borderRadius(10px);
+          @include relative();
+            &:after {
+              display: block;
+              content: "";
+              width: 100%;
+              margin-top: 79.31034%;
+            }
+            &:before{
+              @include loadingItemStyle('style-1',lighten(map-get($colorGroup,'silver'),9%),false,false);
+            }
+          }
+        }
+      }
+      .section-brick {
+        background:map-get($colorGroup,'alto');
+        .loading-brick {
+          .item-pic {
+            overflow: hidden;
+            @include imgBg(false, 100%, 360px, lighten(map-get($colorGroup,'silver'),10%), '', no-repeat, '');
+            @include relative();
+            @include borderRadius(10px);
+              &:after {
+                display: block;
+                content: "";
+                width: 100%;
+                margin-top: 79.31034%;
+              }
+              &:before{
+                @include loadingItemStyle('style-1',lighten(map-get($colorGroup,'silver'),9%),false,false);
+              }
+          }
+        }
+        a{
+          display:block;
+        }
+        .media-group{
+          .media-item {
+            overflow: hidden;
+            @include relative();
+            @include transition(.5s);
+            .img-pic {
+              @include transform(translate(0% 0%)scale(1));
+              @include transition(1s);
+              @include imgBg(false, 100%, 180px, false, contain, no-repeat, left);
+              @include media-max(xl) {
+                height: 180px;
+              }
+              @include media-max(sm) {
+                @include transform(translate(5%,5%) scale(1.1));
+              }
+            }
+            .contentArea {
+              padding:20% 5% 10% 5%;
+              color:map-get($colorGroup,'black');
+              background: map-get($colorGroup, "white");
+              height: 100%;
+              @include transition(.5s);
+              @include absolute(top 0 right 0);
+              @include icon-triangle("left",map-get($colorGroup, "white"));
+              @include calc(width,50%, 100% / 2);
+              h5{
+                padding-left:10px;
+                font-weight:bold;
+                color:map-get($colorGroup,'mineShaft');
+                @include relative();
+                @include ellipse('multiline',1);
+                @include list-style('line-01',map-get($colorGroup,'treePoppy'));
+              }
+              p{
+                color:map-get($colorGroup,'doveGray');
+                @include ellipse('multiline',2);
+              }
+            }
+            &:hover{
+              .img-pic{
+                @include transform(translate(5%,5%) scale(1.2));
+              }
+              .contentArea{
+                @include transition(.5s);
+                  background:map-get($colorGroup,'tundora');
+                  h5,p{
+                    color:map-get($colorGroup,'white');
+                  }
+                  @include icon-triangle("left",map-get($colorGroup, "tundora"));
+              }
+            }
+          }
+          &:nth-child(3){
+            .media-item{
+              .img-pic{
+                background-position:right !important;
+                  @include media-max(sm) {
+                    @include transform(translate(-5%,-5%) scale(1.1));
+                  }
+              }
+              .contentArea {
+                @include absolute(top 0 left 0);
+                @include icon-triangle("right",map-get($colorGroup, "white"));
+              }
+              &:hover{
+                .img-pic{
+                  @include transform(translate(-5%,-5%) scale(1.2));
+                }
+                .contentArea{
+                  @include icon-triangle("right",map-get($colorGroup, "tundora"));
+                }
+              }
+            }
+          }
+          &:nth-child(4){
+            .media-item{
+              .img-pic{
+                background-position:right !important;
+                  @include media-max(sm) {
+                    @include transform(translate(-5%,-5%) scale(1.1));
+                  }
+              }
+              .contentArea {
+                @include absolute(top 0 left 0);
+                @include icon-triangle("right",map-get($colorGroup, "white"));
+              }
+              &:hover{
+                .img-pic{
+                  @include transform(translate(-5%,-5%) scale(1.2));
+                }
+                .contentArea{
+                  @include icon-triangle("right",map-get($colorGroup, "tundora"));
+                }
+              }
+            }
+          }
+        }
+      }
+      .section-feature{
+        background:white;
+        .media-group{
+          display:flex;
+          @include media-max(sm){
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+          .media-item{
+            width:calc(100% / 2 - 30px);
+            @include media-max(sm){
+              width:calc(100% / 2);
+            }
+            text-align: center;
+            .item{
+              padding:0px 80px;
+              border-right: 1px solid map-get($footerGroup,'border-color');
+              background:map-get($footerGroup,'footer-bg');
+              h2{
+                margin-bottom:10px;
+              }
+              img{
+                max-width:120px;
+                margin-bottom:20px;
+              }
+              @include media-max(xl){
+                padding:0 40px;
+              }
+              @include media-max(md){
+                padding:0px 20px;
+                img{
+                  max-width:85px;
+                }
+              }
+              @include media-max(sm){
+                border-right: 0;
+              }
+            }
+            &:last-child{
+              .item{
+                border-right:none;
+              }
+            }
+            @include media-max(sm){
+              &:nth-child(2){
+                .item{
+                  margin-right:0;
+                }
+              }
+              &:nth-child(4){
+                .item{
+                  margin-right:0;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }

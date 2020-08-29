@@ -1,0 +1,62 @@
+  %them-tw {
+    h1 {
+      //carousel
+      // color: map-get($colorGroup, "daintree");
+      @include font-size($h1-font-sizes, "tw");
+    }
+    h2 {
+      //main
+      // color: map-get($mainContentGroup, "normal-color");
+      @include font-size($h2-font-sizes, "tw");
+    }
+    h3 {
+      // color: map-get($colorGroup, "daintree");
+      // @include font-size($h3-font-sizes, "tw");
+    }
+    h4 {
+      // color: map-get($colorGroup, "emperor");
+      // @include font-size($h4-font-sizes, "tw");
+    }
+    h5 {
+      // color: map-get($mainContentGroup, "color-blue");
+      @include font-size($h5-font-sizes, "tw");
+    }
+    p {
+      letter-spacing: 1px;
+      // color: map-get($colorGroup, "emperor");
+      @include font-size($p-font-sizes, "tw");
+    }
+    ol{
+      li{
+        @include font-size($p-font-sizes, "tw");
+      }
+    }
+    header {
+      .menu {
+        @include font-size($header-menu-font-size, "tw");
+      }
+    }
+
+    footer {
+      address {
+        // @include font-size($footer-font-size-companeyName, "tw");
+      }
+      p {
+        // @include font-size($footer-font-size-message, "tw");
+      }
+      ul {
+        // @include font-size($footer-font-size-companeyName, "tw");
+        a {
+          // @include font-size($footer-font-size-companeyName, "tw");
+        }
+        li {
+          a {
+            @include font-size($footer-font-size-privacy, "tw");
+          }
+        }
+      }
+      .footerPrivcy {
+        @include font-size($footer-font-size-privacy, "tw");
+      }
+    }
+  }

@@ -1,0 +1,46 @@
+.carouselArea{
+    overflow:hidden;
+    @include relative();
+    .item-companyLogo{
+        svg{
+            fill:#fff;
+            width: 100px;
+            margin-top: 35px;
+        }
+    }
+    .container{
+        .arrow-section {
+            letter-spacing:2.5px;
+            cursor:pointer;
+            @include opacity(0.8);
+            @include transition(1s);
+            // @include absolute(bottom 13% left 50%);
+            @include transform(translate(-50px, 0px));
+            @include media-max(xl){
+                bottom:5%;
+            }
+            @include media-max(sm){
+                @include opacity(1);
+            }
+            &:hover {
+                @include opacity(1);
+                @include transition(1s);
+            }
+            .angle{
+                .img-angle{
+                    @include transform(translateY(0px));
+                    @include animation(angle_Move,1s,linear,false,infinite,normal,forwards)
+                }
+            }
+        }
+    }
+}
+
+@include keyframes(angle_Move){
+    0%{
+        @include transform(translateY(0px));
+    }
+    100%{
+        @include transform(translateY(20px));
+    }
+}

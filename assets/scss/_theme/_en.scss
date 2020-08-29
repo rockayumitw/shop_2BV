@@ -1,0 +1,81 @@
+%them-EN {
+  h1 {
+    //carousel
+    color: map-get($colorGroup, "daintree");
+    @include font-size($h1-font-sizes, "en");
+  }
+  h2 {
+    //main
+    // color: map-get($mainContentGroup, "normal-color");
+    @include font-size($h2-font-sizes, "en");
+  }
+  h3 {
+    // color: map-get($colorGroup, "daintree");
+    // @include font-size($h3-font-sizes, "en");
+  }
+  h4 {
+    // color: map-get($colorGroup, "emperor");
+    // @include font-size($h4-font-sizes, "en");
+  }
+  h5 {
+    // color: map-get($mainContentGroup, "color-blue");
+  }
+  p {
+    // letter-spacing: 1px;
+    // color: map-get($colorGroup, "emperor");
+    @include font-size($p-font-sizes, "en");
+  }
+
+  header {
+    .menu {
+      @include font-size($header-menu-font-size, "en");
+    }
+  }
+
+  // .createEnvironment {
+  //   h3{
+  //     font-size:19pt !important;
+  //   }
+  //     .contentArea{
+  //       max-width:750px;
+  //       @include media-max(xl){
+  //         max-width:600px;
+  //       }
+  //       @include media-max(lg){
+  //         max-width:500px;
+  //         h3{
+  //           padding: 0 !important;
+  //         }
+  //       }
+  //     }
+  // }
+
+  footer {
+    address {
+      // @include font-size($footer-font-size-companeyName, "en");
+    }
+    p {
+      // @include font-size($footer-font-size-message, "en");
+    }
+    .footer-box{
+    }
+    ul {
+      // @include font-size($footer-font-size-companeyName, "en");
+      a {
+        // @include font-size($footer-font-size-companeyName, "en");
+      }
+      li {
+        a {
+          // @include font-size($footer-font-size-privacy, "en");
+        }
+      }
+    }
+    .language{
+      // float:none;
+      right:20px;
+    }
+    .footerPrivcy {
+      @include font-size($footer-font-size-privacy, "en");
+    }
+  }
+}

@@ -1,0 +1,129 @@
+//三角形- 需再修改
+//example: @include icon-triangle('top',color)
+@mixin icon-triangle($direction,$color) {
+    @if $direction == "top"{
+      &::before{
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 8px 8px 8px;
+        border-color: transparent transparent $color transparent;
+        content: "";
+        display: block;
+        @include absolute(top -8px left 50%);
+        @include transform(translate(-50%,0))
+      }
+    }
+    @if $direction == "right"{
+      &::before{
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 15px 20px 15px;
+        border-color: transparent $color transparent  transparent;
+        content: "";
+        display: block;
+        @include absolute(top 60% right -2% left auto);
+        @include transform(rotate(45deg));
+        @include transition(.5s);
+      }
+    }
+    @if $direction == "left"{
+      &::before{
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 15px 20px 15px;
+        border-color: transparent transparent transparent $color;
+        content: "";
+        display: block;
+        @include absolute(top 60% left -2%);
+        @include transform(rotate(-45deg));
+        @include transition(.5s);
+      }
+    }
+    @if $direction == "bottom"{
+      &::before{
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 15px 20px 15px;
+        border-color: transparent transparent transparent $color;
+        content: "";
+        display: block;
+        @include absolute(top 45% left 50%);
+        @include transform(translateX(-15px)rotate(-135deg));
+      }
+    }
+  }
+
+//分享 | 聯絡 樣式 - 需再調整
+//example: @include social-icon('none',.3s,25px,25px);
+  @mixin social-icon($type,$time,$width,$height){
+    @if $type == 'none'{
+      a {
+        color: map-get($footerGroup, "normal-color");
+        @include transition(0.3s);
+        &:hover {
+          color: map-get($footerGroup, "hover-color");
+          @include transition(0.3s);
+        }
+        path,
+        svg {
+          @include media-max(md) {
+            width: 25px;
+            height: 25px;
+          }
+        }
+        img {
+          @include media-max(md) {
+            max-width: 25px !important;
+            width: 100%;
+          }
+        }
+      }
+    }
+    @if $type == 'circle'{ //圓形按鈕樣式
+      a{
+        display:inline-block;
+        width:50px;
+        height:50px;
+        border-radius:50%;
+        color: map-get($colorGroup,'white');
+        text-align: center;
+        @include transition(.3s);
+        &.users{background:map-get($socialGroup,'users')}
+        &.fb{background:map-get($socialGroup,'fb')}
+        &.twitter{background:map-get($socialGroup,'twitter')}
+        &.ig{background:map-get($socialGroup,'ig')}
+        &.telgram{background:map-get($socialGroup,'telgram')}
+        &.youtube{background:map-get($socialGroup,'youtube')}
+        &:hover{
+            color: map-get($footerGroup,'hover-color');
+            background:map-get($colorGroup,'white');
+            @include transition(.3s);
+        }
+        i{
+            font-size:1.5em;
+            line-height:50px;
+        }
+      }
+    }
+  }
+
+
+@mixin list-style($type,$color){
+  @if $type == 'line-01'{
+    &:after{
+      display: block;
+      content: '';
+      border-left: 3px solid $color;
+      width: 10px;
+      height: 20px;
+      position: absolute;
+      top: 0;
+      left:0;
+      line-height: 20px;
+    }
+  }
+}

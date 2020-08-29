@@ -1,0 +1,52 @@
+.comment-item{
+    .author-thumbanil{
+        
+    }
+    .b-rating{
+        display:block !important;
+        padding-top:0px;
+        &.form-control{
+            height:calc(1.5em + 3px) !important;
+        }
+    }
+    .author-name{
+        color:map-get($colorGroup,'RegalBlue');
+        @include font-size($comment-authorName-font-size,'tw');
+    }
+    .comment-date{
+        color:map-get($colorGroup,'gray');
+        @include font-size($comment-tool-font-size,'tw');
+    }
+    .comment-tool{
+        margin-bottom:5px;
+        color:map-get($colorGroup,'gray');
+        @include font-size($comment-tool-font-size,'tw');
+    }
+    .comment-title{
+        color:map-get($colorGroup,'rhino');
+        font-weight:bold;
+        @include font-size($comment-title-font-size,'tw');
+    }
+    .comment-content{
+        padding:12px;
+        border-radius:10px;
+        background:lighten(map-get($colorGroup,'alto'),8%);
+        word-break: break-all;
+        @include font-size($comment-content-font-size,'tw');
+    }
+    .discussion-comment-group{
+        .author-name{
+            color:map-get($colorGroup,'rhino');
+        }
+        .comment-input-area{
+            padding:12px;
+            border-radius:10px;
+            background:lighten(map-get($colorGroup,'alto'),8%);
+            textarea{
+                line-height:20px;
+                width:calc(100% - 90px);
+                resize:none;
+            }
+        }
+    }
+}

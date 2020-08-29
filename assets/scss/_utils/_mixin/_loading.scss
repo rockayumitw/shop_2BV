@@ -1,0 +1,51 @@
+//等待資料傳遞使用 目前運用在item
+//example: @include loadingItemStyle('style-2',$color1,$color2,$color3)
+@mixin loadingItemStyle($style,$color1,$color2,$color3){
+    @if $style == 'style-1'{
+          content: "";
+          display: inline-block;
+          position: absolute;
+          background: $color1;
+          width:25%;
+          height: 100%;
+          box-shadow: 0 0 50px 20px $color1;
+          animation: wave 1s infinite;
+          transform: skew(-60deg);
+    }
+    @if $style == 'style-2'{
+        content: "";
+        display: block;
+        animation-duration: 5s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+        animation-name: placeHolderShimmer;
+        animation-timing-function: linear;
+        background: $color1;
+        background: linear-gradient(to right, $color2 8%, $color3 18%, $color2 33%);
+        background-size: 100%;
+        background-repeat:repeat;
+        @include relative();
+        border-radius: 5px;
+        height: 100%;
+        width: 100%;
+    }
+  }
+    
+
+@include keyframes(wave){
+    0% {
+        left: -110%;
+    }
+    100% {
+        left: 200%;
+    }
+}
+
+@include keyframes(placeHolderShimmer){
+    0% {
+        background-position: -535px 0
+    }
+    100% {
+        background-position: 535px 0
+    }
+}

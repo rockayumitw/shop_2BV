@@ -1,0 +1,48 @@
+//本課作業
+.courses-homework{
+    .student-result{
+        .card{
+            @include box-shadow(0px, 2px, 10px, map-get($colorGroup,'mask'), false);
+            .card-body{
+                position:relative;
+                .b-avatar{
+                    position:absolute !important;
+                    top:-20px;
+                }
+                .card-text{
+                    .data{
+                        @include transition(.3s);
+                        color:map-get($colorGroup,'dustyGray')
+                    }
+                }
+            }
+            .card-footer{
+                background:transparent;
+                border-top:0;
+                .card-footer-area{
+                    font-size:13px;
+                }
+            }
+            @include transition(.3s);
+            &:hover{
+                @include transition(.3s);
+                background:map-get($colorGroup,'FountainBlue');
+                color:white;
+                .card-text{
+                    .data{
+                        @include transition(.3s);
+                        color:map-get($colorGroup,'white')
+                    }
+                }
+            }
+        }
+    }
+    .commit-homework{
+        &.__intro{}
+        &.__edit{}
+        &.__result{}
+        .courses-content-area{
+            clear:both !important;
+        }
+    }
+}

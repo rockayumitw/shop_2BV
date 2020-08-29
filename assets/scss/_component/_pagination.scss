@@ -1,0 +1,36 @@
+ul.pagination{
+    li{
+        &.page-item{
+            background-color: transparent;
+            border-color: transparent;
+            span{
+                &.page-link[aria-label="Go to next page"],&.page-link[aria-label="Go to last page"],&.page-link[aria-label="Go to previous page"],&.page-link[aria-label="Go to first page"]{
+                    border:1px solid map-get($colorGroup,'FountainBlue');
+                    color:map-get($colorGroup,'FountainBlue');
+                    border-radius:5px;
+                    background:white;
+                }
+            }
+            button{
+                &.page-link[aria-label="Go to next page"],&.page-link[aria-label="Go to last page"],&.page-link[aria-label="Go to previous page"],&.page-link[aria-label="Go to first page"]{
+                    border:1px solid map-get($colorGroup,'FountainBlue');
+                    color:map-get($colorGroup,'FountainBlue');
+                    border-radius:5px;
+                    background:white;
+                }
+                &.page-link{
+                    background-color: transparent;
+                    border-color: transparent;
+                    color:map-get($colorGroup,'black');
+                    @include transition(.3s);
+                }
+            }
+            &.active{
+                .page-link{
+                    @include transition(.3s);
+                    color:map-get($colorGroup,'FountainBlue');
+                }
+            }
+        }
+    }
+}

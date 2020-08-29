@@ -1,0 +1,60 @@
+// 課程討論
+.courses-discussion{
+    .discussion-area{
+        label{
+        }
+        input{
+            &.form-control{
+                width:calc(100% - 20px);
+            }
+        }
+        .discussion-item{
+            border-bottom:1px solid map-get($colorGroup,'silver');
+            &:last-child{
+                border-bottom:0;
+            }
+            .media{
+                .b-avatar{
+                    width:80px !important;
+                    height:80px !important;
+                    @include media-max(sm){
+                        width:50px !important;
+                        height:50px !important;
+                    }
+                }
+                .media-body{
+                    word-break: break-all;
+                    .discussion-comment-group{
+                        overflow:hidden;
+                        transition:.5s;
+                        height:0px;
+                        &.active{
+                            transition:.5s;
+                            height:auto;
+                            // @include animation(openMove,.3s,linear,false,false,normal,forwards);
+                        }
+                        .media{
+                            .b-avatar{
+                                width:60px !important;
+                                height:60px !important;
+                                @include media-max(sm){
+                                    width:40px !important;
+                                    height:40px !important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include keyframes(openMove){
+    0%{
+        height:0px;
+    }
+    100%{
+        height:auto;
+    }
+}

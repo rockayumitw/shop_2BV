@@ -1,0 +1,17 @@
+{
+    "links": {
+      "home": "home",
+      "about": "about",
+      "en": "en",
+      "tw": "tw"
+    },
+    "home": {
+      "title": "home",
+      "introduction": "intro"
+    },
+    "about": {
+      "title": "about",
+      "introduction": "about intro."
+    }
+  }
+  

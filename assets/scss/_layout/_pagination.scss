@@ -1,0 +1,17 @@
+.pagination{
+    .page-link{
+        color:map-get($colorGroup,'emperor');
+    }
+    .page-item{
+        .page-link{
+            background-color:transparent;
+            border:none;
+            border-radius:50%;
+            
+            &:active{
+                color:map-get($colorGroup,'white') !important;
+                background-color:map-get($colorGroup,'daintree-1');
+            }
+        }
+    }
+}

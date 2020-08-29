@@ -1,0 +1,58 @@
+.list-area{
+    &.__video-list{
+        ul{
+            li{
+                display:flex;
+                align-items: center;
+                justify-content: space-around;
+                padding: 5px 0px;
+                &.active{
+                    transition:.3s;
+                    background:map-get($video-panels,'list-hover');
+                }
+                &:hover{
+                    background:map-get($video-panels,'list-hover');
+                }
+                .list-column{
+                    padding:0 5px;
+                    &:first-child{
+                        width:70px;
+                    }
+                    &:nth-child(2){
+                        width:calc(100% - 180px);
+                        .courses-title{
+                            @include font-size($courses-video-list-font-sizes,'tw');
+                        }
+                        .courses-detail{
+                            font-size:13px;
+                        }
+                    }
+                    &:nth-child(3){
+                        width:40px;
+                        .icon{
+                            font-size:20px;
+                        }
+                    }
+                    &:last-child{
+                        width:70px;
+                        .courses-timer{
+                            font-size:13px;
+                            font-style:italic;
+                        }
+                    }
+                }
+                transition:.3s;
+            }
+        }
+    }
+    &.__list-course{  
+        ul{
+            list-style:none;
+            li{
+                .courses-content{
+                    @include font-size($courses-tab-panels-content-font-size,'tw');
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,36 @@
+.inner-page{
+    @include fixed-top-blank-height-use();
+    // @include relative(top 110px);
+    .section-router{
+        color:map-get($colorGroup,'blueBayoux');
+        ol{
+            padding:0;
+            margin:1px;
+            &.breadcrumb{
+                li{
+                    &.breadcrumb-item{
+                        a{
+                            color:map-get($colorGroup,'blueBayoux');
+                            font-size:15px;
+                            text-decoration:none;
+                        }
+                        &.active{
+                            // color:map-get($colorGroup,'nobel');
+                            span{
+                                font-size:15px;
+                                color:map-get($colorGroup,'heather');
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    main{
+        // @include relative(top 70px);
+        &:before{
+            content:'';
+            height:0;
+        }
+    }
+}

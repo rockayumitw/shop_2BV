@@ -1,0 +1,60 @@
+.go-top{
+    @include z-index(goTop);
+    @include fixed(bottom 20px right 20px);
+    @include transition(.1s);
+    // @include media-max(lg){
+        &.sticky-go-top {
+            &.__pc {
+                @include transition(.1s);
+                @include absolute(top -315px right 20px);
+            }
+            &.__md {
+                @include transition(.1s);
+                @include absolute(top -40px right 20px);
+            }
+            &.__mb {
+                @include absolute(bottom -40px right 20px);
+            }
+            &.__lg-inner-sticky{
+                @include absolute(top -40px right 20px);
+            }
+            @include media-max(lg){
+                @include fixed(bottom 0px right 20px);
+                &.__md-inner-fixed{
+                    @include fixed(bottom 80px right 20px);
+                }
+                &.__md-inner-sticky{
+                    @include absolute(bottom -45px right 20px);
+                }
+            }
+            @include media-max(md){
+                @include fixed(bottom 0px right 20px);
+                &.__sm-inner-fixed{
+                    @include fixed(bottom 80px right 20px);
+                }
+                &.__sm-inner-sticky{
+                    @include absolute(bottom -45px right 20px);
+                }
+            }
+            @include media-max(sm){
+                @include fixed(bottom 0px right 20px);
+                &.__xs-inner-fixed{
+                    @include fixed(bottom 60px right 20px);
+                }
+                &.__xs-inner-sticky{
+                    @include absolute(bottom -45px right 20px);
+                }
+            }
+        }
+    // }
+    @include media-max(xs){
+        @include fixed(bottom 0px right 20px);
+        &.__xs-inner-fixed{
+            @include fixed(bottom 60px right 20px);
+        }
+        &.__xs-inner-sticky{
+            @include absolute(bottom -45px right 20px);
+        }
+    }
+    
+}

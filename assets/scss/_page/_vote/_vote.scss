@@ -1,0 +1,252 @@
+//qpp官網頁面
+.voteArea{
+    @include imgBg(map-get($commonBgGroup,'pc-bg'),100%,100%,false,cover,no-repeat,top);
+    h2,h4.item-title{
+      color:white;
+    }
+    h5{
+      color:map-get($colorGroup,'blue');
+    }
+    .vote-content{
+      color:map-get($colorGroup,'alto');
+      .item-loading {
+        .item-pic {
+          overflow: hidden;
+          @include imgBg(false, 100%, 450px, map-get($colorGroup,'daintree'), '', no-repeat, '');
+          @include media-max(lg){
+            height:300px;
+          }
+          @include relative();
+          @include borderRadius(5px);
+          @include border(bottom,1px,solid,map-get($colorGroup,'daintree'));
+          @include relative();
+            &:after {
+              display: block;
+              content: "";
+              width: 100%;
+              margin-top: 79.31034%;
+            }
+            &:before{
+             @include loadingItemStyle('style-1',#002e46ab,false,false);
+            }
+          }
+        .item-bottom {
+          padding: 5px 20px;
+          overflow: hidden;
+          @include relative();
+          .item-title{
+            height:40px;
+          }
+          .item-quection{
+            height:60px;
+          }
+          .item-select{
+            height: 30px;
+          }
+          .item-btn{
+            height: 40px;
+            width:150px;
+          }
+          .item-title,.item-quection,.item-select,.item-btn {
+            background: map-get($colorGroup,'daintree');
+            margin-bottom: 10px;
+            overflow: hidden;
+            @include relative();
+            &:before{
+              @include loadingItemStyle('style-1',#002e46ab,#00293d,#0179b9ab);
+            }
+          }
+        }
+      }
+      .media-item{
+        .item-img{
+          overflow:hidden;
+          @include relative();
+          @include borderRadius(5px);
+          @include mask(rgba(0,0,0,0.2));
+          // @include imgBg(map-get($mainContentGroup,'img-pic1'),100%,450px,false,cover,no-repeat,top);
+          @include imgBg('',100%,auto,false,cover,no-repeat,top);
+          @include media-max(md){
+            height:250px;
+          }
+          .pic{
+            @include imgBg('',100%,450px,false,cover,no-repeat,top);
+          }
+          .count-day{
+            background:map-get($colorGroup,'greenvogue');
+            @include opacity(0.9);
+            @include absolute(top 0 left 0);
+            &.end{
+                background:$gray;
+            }
+          }
+          .vote-people{
+            background:map-get($colorGroup,'greenvogue');
+            @include opacity(0.9);
+            @include absolute(bottom 0 right 0);
+          }
+        }
+        .item-quection{
+          word-break: break-word;
+        }
+        .item-bottom{
+          .custom-radio{
+            min-height:2.5rem;
+            margin-top:15px;
+            @include border('bottom',1px,solid,rgba(61,88,102,1));
+            .custom-control-label{
+                margin-bottom:0.5rem;
+            }
+          }
+          .social-share{
+            .card{
+              border:0px;
+              background: transparent;
+              span{
+                font-size:13px;
+                color:$gray;
+              }
+            }
+            svg{
+              width:1em;
+              height:1em;
+            }
+            .card-body{
+              svg{
+                width:2em;
+                height:2em;
+              }
+              .icon-line{
+                margin-top:-15px;
+              }
+            }
+            @extend %clearfix;
+          }
+          .vote-rules{
+            display:none;
+          }
+          .btn-vote,.btn-login,.btn-logout{
+            @include btn-style('full',map-get($btnGroup,'normal-bg-pictonBlue'),map-get($btnGroup,'normal-txt-color'),map-get($btnGroup,'hover-bg-color'),map-get($btnGroup,'normal-txt-color'));
+          }
+          .selectArea{
+            .item{
+                .progress{
+                    .progress-bar{
+                        background:map-get($colorGroup,'blue');
+                    }
+                }
+                .icon-check{
+                    .bi-check{
+                        width: 20px;
+                        height: 20px;
+                        @include borderRadius(100%);
+                        background:map-get($colorGroup,'blue');
+                    }
+                }
+                span{
+                    font-size:16px !important;
+                }
+            }
+          }
+        }
+      }
+    }
+}
+
+//嵌入頁面
+.shareVote{
+  height:100vh;
+  .container{
+    max-width:1300px;
+  }
+  .voteArea{
+    padding-top:0 !important;
+  }
+  .media-item{
+    h2{
+      padding: 0 0 3rem 0 !important;
+    }
+    .selectArea{
+      .custom-radio{
+        border-bottom:0 !important;
+      }
+      .item{
+        .progress{
+            .progress-bar{
+                background:map-get($colorGroup,'greenvogue') !important;
+            }
+        }
+        .icon-check{
+            .bi-check{
+                width: 20px;
+                height: 20px;
+                @include borderRadius(100%);
+                background:map-get($colorGroup,'greenvogue') !important;
+            }
+        }
+        span{
+            font-size:16px !important;
+        }
+      }
+    }
+    .item-bottom{
+      .vote-rules{
+        font-size:1rem;
+        display:block !important;
+      }
+    }
+  }
+  .vote-content{
+    .item-loading {
+      .item-pic {
+        overflow: hidden;
+        @include imgBg(false, 100%, 450px, map-get($colorGroup,'alto'), '', no-repeat, '');
+        @include relative();
+        @include borderRadius(5px);
+        @include border(bottom,1px,solid,map-get($colorGroup,'alto'));
+        @include relative();
+          &:after {
+            display: block;
+            content: "";
+            width: 100%;
+            margin-top: 79.31034%;
+          }
+          &:before{
+           @include loadingItemStyle('style-1',#e7e7e7ab,false,false);
+          }
+        }
+      .item-bottom {
+        padding: 5px 20px;
+        overflow: hidden;
+        @include relative();
+        .item-title{
+          height:40px;
+          border-radius:3px;
+        }
+        .item-quection{
+          height:60px;
+          border-radius:3px;
+        }
+        .item-select{
+          height: 30px;
+          border-radius:3px;
+        }
+        .item-btn{
+          height: 40px;
+          width:150px;
+          border-radius:3px;
+        }
+        .item-title,.item-quection,.item-select,.item-btn {
+          background: map-get($colorGroup,'alto');
+          margin-bottom: 10px;
+          overflow: hidden;
+          border-radius:3px;
+          @include relative();
+          &:before{
+            @include loadingItemStyle('style-1',#e7e7e7ab,#ebebeb,#f0f0f0ab);
+          }
+        }
+      }
+    }
+  }
+}

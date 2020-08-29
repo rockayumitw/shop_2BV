@@ -1,0 +1,172 @@
+// $random:"?"+random(10000);
+
+// 預設顏色及圖片
+// $default-img:'../../assets/pic-default.jpg';
+$errBg:'../../assets/_img/errBg.png';
+
+// 字體,陰影
+$font-Style:"Microsoft JhengHei";
+$shadow:rgba(0,40,62,0.5);
+$text-shadow:0px 3px 12px -6px rgba(191,191,191,0.05);
+$card-title-bg:'#FC9E20','#ED6F3F';
+
+// them-語系
+// example: them-TW | them-EN
+$them-lang:'TW','JP','EN','CN','KO';
+
+// 共用color
+// example: bg-color | text-color | border-color
+$colorGroup:(
+    'CatskillWhite':#ECF2F5,
+    'Calypso':#33658A,
+    'RegalBlue':#00426C,
+    'japaneseLaurel':#00840C,
+    'ebonyClay':#1F2B38,
+    'regentGray':#7D8995,
+    'heather':#c2cedc,
+    'FountainBlue':#529ABC,
+    'supernova':#FECC00,
+    'fiord':#4C596C,
+    'black':#000,
+    'alto':#DBDBDB,
+    'dustyGray':#999,
+    'gray':#7F7F7F,
+    'scorpion':#606060,
+    'silver':#b9b9b9,
+    'blueBayoux':#54657F,
+    'cloudBurst':#1f2f47,
+    'bigStone':#141F2F,
+    'dark': #000 !important,
+    'rhino':#293f5f,
+    'tundora':#454545,
+    'white':#fff,
+    'mineShaft':#2d2d2d,
+    'red':#EB0000,
+    'doveGray':#6a6a6a,
+    'nobel':#B5B5B5,
+    'shark':#1D2329,
+    'treePoppy':#fca01e,
+    'mask':rgba(0,0,0,0.6)
+);
+
+// imageBg-首頁使用
+// $homeAreaBgGroup:(
+//     xl-header:'../../assets/_img/header-xl.png',
+//     md-header:'../../assets/_img/header-md.png',
+//     xl-introBg:'../../assets/_img/area1-bg-xl.png',
+//     md-introBg:'../../assets/_img/area1-bg-md.png',
+//     xl-area2:'../../assets/_img/area2-bg-xl.png',
+//     md-area2:'../../assets/_img/area2-bg-md.png',
+// );
+
+// header-menu 選單字體顏色
+$headerGroup:(
+    'bg-color-pc':#fff,
+    'bg-color-phone':#293f5f,
+    'icon-arrow-color':#999,
+    'text-normal-color':map-get($colorGroup,'black'),
+    'text-hover-color':map-get($colorGroup,'red'),
+    'tool-btn-normal-color':map-get($colorGroup,'nobel'),
+    'tool-btn-hover-color':map-get($colorGroup,'black'),
+    'searchArea-border-color':map-get($colorGroup,'nobel'),
+    'bottom-line-color':map-get($colorGroup,'red'),
+    'subMenu-bottom-line-color':map-get($colorGroup,'nobel'),
+    'text-normal-color-phone':map-get($colorGroup,'white'),
+    'text-hover-color-phone':map-get($colorGroup,'treePoppy'),
+    'subMenu-bg-seconed-color-phone':map-get($colorGroup,'cloudBurst'),
+    'subMenu-bg-hover-color-phone':map-get($colorGroup,'bigStone'),
+    'bottom-line-color-phone':map-get($colorGroup,'blueBayoux'),
+    'mask':map-get($colorGroup,'mask')
+);
+
+// footer 選單字體級背景顏色
+$footerGroup:(
+    'menu-title-color':map-get($colorGroup,'nobel'),
+    'menu-normal-color':map-get($colorGroup,'doveGray'),
+    'menu-hover-color':map-get($colorGroup,'treePoppy'),
+    'bottom-bg-color':map-get($colorGroup,'shark'),
+    'privacy-text-color':map-get($colorGroup,'doveGray'),
+    'border-color':map-get($colorGroup,'alto'),
+    'footer-bg':white,
+);
+
+// card-group
+$cardGroup:(
+    'bg-color':map-get($colorGroup,'white'),
+    'bookmark-collect-color':map-get($colorGroup,'gray'),
+    'bookmark-uncollect-color':map-get($colorGroup,'nobel'),
+    'avatar-border-color':map-get($colorGroup,'white'),
+    'h4-color':map-get($colorGroup,'white'),
+    'link-color':map-get($colorGroup,'scorpion'),
+    // 'h4-bg-color':linear-gradient(90deg, #FC9E20 25%, #FC9E20 50%, #ED6F3F 25%),
+    'swiper-bullet-active-bg-color':map-get($colorGroup,'rhino'),
+);
+
+// live-panels
+$video-panels:(
+    'video-tab-panels':map-get($colorGroup,'ebonyClay'),
+    'border-bottom':map-get($colorGroup,'nobel'),
+    'list-hover':map-get($colorGroup,'black'),
+    'text-color':map-get($colorGroup,'white'),
+    'subject-object-count':rgba(54,65,76,0.4),
+    'chat-message-area':rgba(12,17,22,1)
+);
+
+$tabs-panels-Group:(
+    '':'',
+);
+
+// socialIcon
+$socialGroup:(
+    'users':#2ab1f3,
+    'fb':#3b5998,
+    'twitter':#1DA1F2,
+    'ig':linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%),
+    'telgram':#0088cc,
+    'youtube':#cd201fad
+);
+
+// z-index
+$z-index: (
+  loading-intro :1031,
+  btn-search    : 10,
+  goTop         : 10,
+  loadingMask   : 9,
+  share-box     : 4,
+  price-box     : 4,
+  bookmark      : 4,
+  searchArea    : 3,
+  video         : 3,
+  dropdownMenu  : 2,
+  header        : 2,
+  footer        : 2,
+  squarebottom  : 2,
+  contentArea   : 1,
+  mask          : 1,
+);
+
+// for VB
+$breakpoints:(
+    xs : 320px, // ios se5
+    sm : 575.98px,
+    md : 767.98px,
+    lg : 991.98px,
+    xl : 1199.98px,
+    xxl: 1400px,
+    xxxl: 1600px,
+);
+
+// 動畫前綴
+$experimental-support-for-webkit: true;
+$experimental-support-for-mozilla: true;
+$experimental-support-for-opera: true;
+$experimental-support-for-microsoft: true;
+$experimental-support-for-khtml: false;
+
+
+//tag
+// $tag:(
+//     'system':#f00,
+//     'events':#E1B458
+// );
+

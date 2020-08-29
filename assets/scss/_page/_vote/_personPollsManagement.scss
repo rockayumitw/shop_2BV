@@ -1,0 +1,81 @@
+.personPollsManagement{
+    input{
+        @include calc( width, 60%,'100% - 130px');
+        @include media-max(md){
+            @include calc( width, 60%,'100% - 110px');
+        }
+    }
+    .tableList{
+        @include scrollBar('style-1',map-get($colorGroup,'daintree-1'));
+    }
+    table{
+        color:white;
+        min-width:1140px;
+        thead{
+            background:map-get($colorGroup,'daintree-1');
+            tr{
+                @include opacity(1);
+                th{
+                    border-bottom:0px;
+                    text-align:center;
+                    border-top:0px;
+                    &:nth-child(1){
+                        width:280px;
+                    }
+                    &:nth-child(2){
+                        width:220px;
+                    }
+                    &:nth-child(3){
+                        width:95px;
+                    }
+                    &:nth-child(4){
+                        width:110px;
+                    }
+                }
+            }
+        }
+        tbody{
+            tr:nth-of-type(odd){
+                background:map-get($colorGroup,'greenvogue');
+            }
+            tr:nth-of-type(even){
+                background:map-get($colorGroup,'blueZodiac');
+            }
+            tr{
+                @include opacity(0.8);
+                @include transition(.5s);
+                &:hover{
+                    @include opacity(1);
+                    @include transition(.5s);
+                    background:lighten(map-get($colorGroup,'blumine'),1%);
+                }
+                &.b-table-details{
+                    padding-top:0;
+                    td{
+                        padding-top:0 !important;
+                        textarea{
+                            line-height:23px;
+                        }
+                    }
+                }
+            }
+        }
+        td{
+            border-top:1px solid map-get($colorGroup,'blumine');
+            &:nth-child(3){
+                text-align:center;
+            }
+            &:nth-child(4){
+                text-align:center;
+            }
+            .custom-control-label{
+                &::before{
+                    display:none;
+                }
+                &::after{
+                    display:none;
+                }
+            }
+        }
+    }
+}

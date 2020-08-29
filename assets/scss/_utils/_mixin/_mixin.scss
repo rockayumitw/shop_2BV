@@ -1,0 +1,337 @@
+//writing-mode: vertical-lr;
+//writing-mode:
+
+// 字體大小計算 | 普通使用
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return $remSize * 1rem;
+}
+
+@mixin normal-font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+
+// box-Sizing
+// example: @include box-sizing(border-box);
+@mixin box-sizing($type)
+ {
+ -webkit-box-sizing:$type;
+ -moz-box-sizing:$type;
+ -ms-box-sizing:$type;
+ -o-box-sizing:$type;
+ box-sizing:$type;
+ }
+
+ // 置中對齊
+ // example: @include vertical-align();
+ @mixin vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+// display: Show / Hide
+// example: @include display(hide);
+@mixin display($disp) {
+  @if $disp == show {
+    display: block;
+  }
+  @if $disp == hide {
+    display: none;
+  }
+}
+
+// 計算: z-Index
+@function z-index($key) {
+  @return map-get($z-index, $key);
+}
+
+@mixin z-index($key) {
+  z-index: z-index($key);
+}
+
+// 計算position : relative | fixed | absolute
+// example: @include absolute(top 14px left 15px)
+@mixin absolute($args: ()) {
+  @include position(absolute, $args);
+}
+ 
+@mixin fixed($args: ()) {
+  @include position(fixed, $args);
+}
+
+@mixin sticky($args: ()) {
+  @include position(sticky, $args);
+}
+ 
+@mixin relative($args: ()) {
+  @include position(relative, $args);
+}
+
+@mixin position($position, $args: ()) {
+  $offsets: top right bottom left;
+  position: $position;                                               
+  
+  @each $offset in $offsets {                                        
+    $index: index($args, $offset);                                   
+    
+    @if $index {                                                     
+      @if $index == length($args) {                                  
+        #{$offset}: 0;                                               
+      }
+      @else {                                                        
+        $next: nth($args, $index + 1);                               
+        @if is-valid-length($next) {                                 
+          #{$offset}: $next;                                         
+        }
+        @else if index($offsets, $next) {                            
+          #{$offset}: 0;                                             
+        }
+        @else {                                                      
+          @warn "Invalid value `#{$next}` for offset `#{$offset}`."; 
+        }
+      }
+    }
+  }
+}
+
+@function is-valid-length($value) {
+  @return (type-of($value) == "number" and not unitless($value)) 
+       or (index(auto initial inherit 0, $value) != false);
+}
+
+
+// border: "false", | top | right | bottom | left
+// example:
+// dircetion: @include border(top,1px,solid,#fff);
+// no-direction: @include border('false',1px,solid,#fff);
+@mixin border($direction, $width, $style, $color) {
+  @if $direction != "false" {
+    border-#{$direction}: $width $style $color;
+  }
+  @if $direction == "false" {
+    border: $width $style $color;
+  }
+}
+
+// border-radius
+// example: @include borderRadius(10px);
+@mixin borderRadius($radius: 0.5em) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+// shadow: 內 | 外 陰影
+// example: @include box-shadow(0px, 0px, 0px, #000, true);
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset { //內陰影
+    -webkit-box-shadow:inset $top $left $blur $color;
+    -moz-box-shadow:inset $top $left $blur $color;
+    box-shadow:inset $top $left $blur $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}
+
+// btn-color: darken | lighten
+@mixin button($color,$bg,$border) {
+  color:$color;
+  // background: darken($bg,0%);
+  background: rgba($bg,100%);
+  border:$border;
+  &:hover {
+    color:darken($color,80%) !important;
+    background:lighten($bg,100%);
+    transition: all 0.3s ease;
+  }
+  &:active {
+    color:darken($color,25%);
+    background:darken($bg,25%);
+  } 
+}
+
+// 計算欄位
+// example: @include calc( width, 60%,'100% - 2px')
+@mixin calc($property,$default, $expression) {
+  #{$property}: $default;
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+
+// @mixin btnGroup($color, $background, $border) {
+//   color: $color;
+//   background-color: darken($background, 10%);
+//   border-color: darken($border, 10%);
+
+//   &:hover,
+//   &:focus,
+//   &:active,
+//   &.active,
+//   .open > &.dropdown-toggle {
+//     color: $color;
+//     background-color: darken($background, 0%);
+//     border-color: darken($border, 0%);
+//     //lighten(color,10%)
+//   }
+
+//   &:active,
+//   &.active,
+//   .open > &.dropdown-toggle {
+//     background-image: none;
+//   }
+
+//   &.disabled,
+//   &[disabled],
+//   fieldset[disabled] & {
+//     &,
+//     &:hover,
+//     &:focus,
+//     &:active,
+//     &.active {
+//       background-color: $background;
+//       border-color: $border;
+//     }
+//   }
+// }
+
+// 圖片大小調整
+// example: @include imgBg($bgImage, $width, $height, $bg, $bgSize, $repeat, $position)
+@mixin imgBg($bgImage, $width, $height, $bg, $bgSize, $repeat, $position) {
+  @if $bgImage {
+    background-image: url($bgImage);
+  }
+  @if $width {
+    width: $width;
+  }
+  @if $height {
+    height: $height;
+  }
+  @if $bg {
+    background: $bg;
+  }
+  background-size: $bgSize;
+  background-repeat: $repeat;
+  background-position: $position;
+}
+
+// rwd: 最小寬度
+// example: @include media-max(md){}
+@mixin media-max($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+// rwd: 最大寬度
+// example: @include media-min(md){}
+@mixin media-min($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+// hack: for ie10 | ie11
+// example: @include hack_ie10-11{}
+@mixin hack_ie10-11() {
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    @content;
+  }
+}
+
+// ...隱藏最大寬度
+// example: @include ellipse('multiline',2)
+@mixin ellipse($type, $num) {
+  @if ($type == "single") {
+    white-space: nowrap;
+  }
+  @if ($type == "multiline") {
+    white-space: inherit;
+    display: -webkit-box;
+    word-break: break-word;
+  }
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: $num;
+  -moz-line-clamp: $num;
+  -ms-line-clamp: $num;
+  -webkit-box-orient: vertical;
+  -ms-box-orient: vertical;
+}
+
+// 字體設定
+@mixin font-source-sans($font-size: false, $letterSpacing: false, $color: false, $weight: false, $line-height: false) {
+  font-family: $font-Style;
+  @if $letterSpacing {
+    letter-spacing: $letterSpacing;
+  }
+  @if $font-size {
+    font-size: $font-size;
+  }
+  @if $color {
+    color: $color;
+  }
+  @if $weight {
+    font-weight: $weight;
+  }
+  @if $line-height {
+    line-height: $line-height;
+  }
+}
+
+// 透明度跨瀏覽
+// example: @include opacity(0.8);
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+@mixin mask($color, $position){
+  &::after{
+    content:'';
+    display:block;
+    background:$color;
+    width:100%;
+    height:100%;
+    @include transition(1s);
+    @include fixed($position);
+    @include animation(maskFadeIn, 1s, linear, false, 1, normal, forwards);
+  }
+}
+
+// 外框線
+// example: @include outline(1px, rgba(0,0,0,0.2), dashed, 1px, #fff )
+@mixin outline($outline-width: 2px,
+               $outline-color: rgba(tomato, 0.2),
+               $outline-style: dashed,
+               $outline-offset: 2px,
+               $background-color: $outline-color) {
+
+  outline: $outline-width $outline-color $outline-style;
+  outline-offset: (-1 * ($outline-width + $outline-offset));
+  background-color: $background-color;
+}
+
+
+@mixin fixed-top-blank-height-use(){
+  &::before{
+    content:'';
+    display:block;
+    width:100%;
+    height:70px;
+    @include media-max(lg){
+      height:50px;
+    }
+  }
+}

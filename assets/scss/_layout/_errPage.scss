@@ -1,0 +1,143 @@
+.errPage{
+    .container{
+        max-width:1250px !important;
+    }
+    @include imgBg($errBg, false, auto, false, cover, no-repeat, center);
+    // @include imgBg(map-get($img,'pc-err-page'), false, auto, false, 100%, no-repeat, top);
+    @include media-max(md){
+        height:auto;
+    }
+    .teachArea{
+        max-width:285px;
+        width:285px;
+        margin:0 20% 0 30%;
+        @include media-max(lg){
+            margin:0 auto;
+        }
+        .slider{
+            margin-top: 120px;
+            padding: 10px;
+            @include media-max(lg){
+                margin-top: 0px;
+            }
+        }
+        .item{
+            text-align:center;
+            padding: 10px;
+            background: rgba(0,0,0,0.3);
+            img{
+                max-height: 545px;
+                border-radius:5px;
+            }
+        }
+        .swiper-pagination{
+            position:relative !important;
+            .swiper-pagination-bullet-active{
+                background:#fff;
+            }
+        }
+        .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets{
+            bottom:0 !important;
+        }
+        .swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet{
+            margin: 0 8px;
+        }
+    }
+    .media-item{
+        &:before{
+            content:'';
+            display:block;
+            height:80px;
+            background:rgba(0,0,0,0.3);
+            @include media-max(lg){
+                display:none;
+            }
+        }
+        .item{
+            &:before{
+                content:'';
+                display:block;
+                height:85px;
+                background:rgba(0,0,0,0.5);
+                @include media-max(lg){
+                    display:none;
+                }
+            }
+            .decoration{
+                width: 70px;
+                height: 250px;
+                display:block;
+                background: #002336;
+                position: absolute;
+                top: 40%;
+                left: -30px;
+                @include media-max(lg){
+                    display:none;
+                }
+            }
+            .item-bottom{
+                background:rgba(0,0,0,0.7);
+                @include media-max(lg){
+                    background:transparent;
+                }
+                .item-description{
+                    padding-top: 1px;
+                    padding-bottom: 60px;
+                    max-width:370px;
+                    display:block;
+                    @include media-max(lg){
+                        padding-top: 40px;
+                        padding-bottom: 20px;
+                        padding-left: 20px;
+                        padding-right: 20px;
+                    }
+                    h1{
+                        font-size:160px !important;
+                        line-height:145px !important;
+                        margin-bottom:0;
+                        margin-top:90px;
+                        letter-spacing: 15px;
+                        @include media-max(lg){
+                            font-size:100px !important;
+                            letter-spacing: 10px;
+                            margin-top:0;
+                        }
+                    }
+                    p{
+                        margin-bottom:0;
+                        letter-spacing:0.4px;
+                        @include media-max(lg){
+                            text-align:center;
+                        }
+                        &.title{
+                            font-size: 28px;
+                            @include media-max(lg){
+                                font-size: 20px;
+                            }
+                        }
+                        &.description{
+                            letter-spacing: -1px;
+                            font-size: 16px;
+                            line-height: 35px;
+                            @include media-max(lg){
+                                font-size: 14px;
+                            }
+                        }
+                        a{
+                            color:white;
+                        }
+                    }
+                    .btn{
+                        @include btn-style('full',map-get($btnGroup,'normal-bg-pictonBlue'),map-get($btnGroup,'normal-txt-color'),map-get($btnGroup,'hover-bg-color'),map-get($btnGroup,'normal-txt-color'));
+                    }
+                    .downloadArea{
+                        img{
+                            max-width:calc(100% / 3);
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+}

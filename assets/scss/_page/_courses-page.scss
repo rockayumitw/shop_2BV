@@ -1,0 +1,266 @@
+.courses-page{
+    // .courses-left-column{
+    //     width:calc(100% - 250px);
+    //     @include media-max(lg){
+    //         width:100%;
+    //     }
+    // }
+    // .courses-right-colulmn{
+    //     width:250px;
+    //     @include media-max(lg){
+    //         width:100%;
+    //     }
+    // }
+    .course-video{
+        padding:20px 30px;
+        @include relative();
+        @include media-max(lg){
+            padding:0;
+        }
+        video{
+            width:100%;
+            @include relative();
+            @include z-index(video);
+        }
+        &::after{
+            content:'';
+            width:400px;
+            height:250px;
+            background:map-get($colorGroup,'Calypso');
+            @include absolute(left 0 bottom 0);
+            @include z-index(squarebottom);
+            @include media-max(lg){
+                display:none;
+            }
+        }
+    }
+    .course-title{
+        h1{
+            margin:0;
+            &::after{
+                display:none;
+            }
+        }
+    }
+    .course-subTitle{
+        padding: 20px 0px;
+        @include font-size($courses-subTitle-font-sizes,'tw');
+    }
+    .courses-score{
+        @include font-size($recommend-font-size,'tw');
+    }
+    .course-outline{
+        margin-bottom:50px;
+        .course-outline-tablist{
+            .card{
+                padding: 0px 20px;
+                .card-header{
+                    background:transparent;
+                    padding: 0 !important;
+                    button{
+                        padding:10px;
+                        svg{
+                            transition:.3s;
+                            transform:rotate(-180deg);
+                        }
+                        &[aria-expanded="true"]{
+                            font-weight:bold;
+                            background:map-get($colorGroup,'CatskillWhite') !important;
+                            svg{
+                                transition:.3s;
+                                transform:rotate(0deg);
+                            }
+                        }
+                    }
+                }
+                .card-body{
+                    padding-top:5px;
+                    padding-bottom:5px;
+                    .card-text{
+                        border-bottom: 1px dashed map-get($colorGroup,'silver');
+                        margin-bottom: 10px;
+                        padding: 0px 10px 10px 10px;
+                        span{
+                            width:100px;
+                            display: inline-block;
+                            text-align:right;
+                            @include media-max(sm){
+                                // margin-top:3px;
+                                text-align:left;
+                                width:70px;
+                            }
+                            &.course-outline-list-subTitle{
+                                text-align:left;
+                                width: calc(100% - 420px);
+                                @include media-max(md){
+                                    width: calc(100% - 320px);
+                                }
+                                @include media-max(sm){
+                                    width: 100%;
+                                    margin-top:0px;
+                                }
+                            }
+                            &.course-outline-list-count{
+                                font-style: italic;
+                                @include media-max(md){
+                                    display:none;
+                                }
+                            }
+                            &.course-outline-list-status-icon{
+                                span{
+                                    @include media-max(md){
+                                        display:none;
+                                    }
+                                    @include media-max(sm){
+                                        img{
+                                            margin-top:3px;
+                                        }
+                                    }
+                                }
+                                
+                            }
+                            span{
+                                width:auto;
+                            }
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+    .course-content{
+        height:100px;
+        overflow:hidden;
+        transition:.3s;
+        &.active{
+            height:auto;
+            transition:.3s;
+        }
+    }
+    .course-related{
+        .swiper-button-next{
+            &::after{
+                content:'';
+            }
+        }
+        .swiper-button-prev{
+            &::after{
+                content:'';
+            }
+        }
+    }
+    .right-column{
+        padding: 50px 30px 0 30px;
+        @include media-max(xxl){
+            padding: 50px 0px 0 0;
+        }
+        .right-box-area{
+            .outer-price-box{
+                border:1px solid red;
+                .price-box{
+                    .inner-buy-button-area{
+                        .btn-buyClass{
+                            display:none !important;
+                        }
+                        @include media-max(lg){
+                            .btn-buyClass{
+                                display:flex !important;
+                                @include relative(top 0px left 0px right 0px);
+                            }
+                        }
+                    }
+                }
+                .outer-buy-button-area{
+                    padding:10px;
+                    @include media-max(lg){
+                        padding:0px;
+                    }
+                    .btn-buyClass{
+                        margin:0 auto;
+                        display:flex !important;
+                        @include relative(top 0px left 0px right 0px);
+                    }
+                    @include media-max(lg){
+                        .btn-buyClass{
+                            display:none !important;
+                            @include relative(top 0px left 0px right 0px);
+                        }
+                    }
+                }
+            }
+            .share-box{
+                @include media-max(lg){
+                    display:none;
+                }
+            }
+        }
+        .course-rating-box{
+            max-width: 200px;
+            margin: 0 auto;
+            @include media-max(md){
+                max-width:310px;
+                // display:inline-block;
+            }
+            .course-rating-box-area{
+                display:inline-block;
+                @include media-max(sm){
+                    max-width: 390px;
+                    margin: 0 auto;
+                }
+            }
+            .course-share-box-area{
+                @include media-max(md){
+                    position:absolute;
+                }
+                .share-box{
+                    background:#fff;
+                    @include z-index(share-box);
+                    span{
+                        display:none;
+                    }
+                    @include media-max(md){
+                        border-radius:50px !important;
+                        position:absolute;
+                    }
+                }
+            }
+        }
+        .share-box-area{
+            &.__md{
+                .share-box{
+                    display:none;
+                    @include media-max(lg){
+                        display:flex;
+                    }
+                    @include media-max(md){
+                        display:none;
+                    }
+                }
+            }
+        }
+        .course-teacher-slider{
+            max-width:250px;
+            // @include media-max(xl){
+            //     max-width:290px;
+            // }
+            float:right;
+            .b-avatar-img{
+                img{
+                    width:auto;
+                }
+            }
+            .swiper-button-prev,.swiper-button-next{
+                &:after{
+                    content:'';
+                }
+            }
+            .course-teacher-name{
+
+            }
+            @include media-max(lg){
+                max-width:100%;
+            }
+        }
+    }
+}

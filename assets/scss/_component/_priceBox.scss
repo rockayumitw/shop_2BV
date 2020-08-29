@@ -1,0 +1,70 @@
+.right-box-area{
+    &.__fixed-top-ft-65{
+        @include fixed(top 65px);
+    }
+    &.__fixed-top-ft-10{
+        @include fixed(top 10px);
+        @include transition(.1s);
+    }
+    &.__sticky{
+        @include relative(top 0);
+    }
+    .outer-price-box{
+        .price-box{
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            .inner-buy-button-area{
+                .btn-buyClass{
+                    display:none !important;
+                }
+            }
+            @include media-max(lg){
+                box-shadow:0px -5px 10px rgba(0,0,0,0.5);
+                width:100%;
+                background:white;
+                align-items: center;
+                &.__sticky{
+                    @include relative(bottom 0);
+                }
+                &.__fixd-bottom{
+                    @include fixed(bottom 0);
+                }
+                @include z-index(price-box);
+                .inner-buy-button-area{
+                    .btn-buyClass{
+                        display:flex !important;
+                    }
+                }
+            }
+            @include media-max(md){
+                &.__sticky{
+                    @include relative(bottom 0);
+                }
+                &.__fixd-bottom{
+                    @include fixed(bottom 0);
+                }
+            }
+            .discount-price{
+                .price{
+                    @include font-size($price-font-size,'tw');
+                }
+            }
+            .orginal-price{
+                font-size:13px;
+                text-decoration: line-through;
+            }
+        }
+        .outer-buy-button-area{
+            .btn-buyClass{
+                display:none !important;
+            }
+        }
+    }
+    .collect-courses-box{
+        .bookmark-area{
+            // @include absolute(top 58% right 10%);
+            @include z-index(bookmark);
+        }
+    }
+}

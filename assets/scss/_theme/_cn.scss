@@ -1,0 +1,68 @@
+%them-CN {
+  h1 {
+    //carousel
+    // color: map-get($colorGroup, "daintree");
+    @include font-size($h1-font-sizes, "cn");
+  }
+  h2 {
+    //main
+    // color: map-get($mainContentGroup, "normal-color");
+    @include font-size($h2-font-sizes, "cn");
+  }
+  h3 {
+    // color: map-get($colorGroup, "daintree");
+    // @include font-size($h3-font-sizes, "cn");
+  }
+  h4 {
+    // color: map-get($colorGroup, "emperor");
+    // @include font-size($h4-font-sizes, "cn");
+  }
+  h5 {
+    // color: map-get($mainContentGroup, "color-blue");
+  }
+  p {
+    letter-spacing: 1px;
+    // color: map-get($colorGroup, "emperor");
+    @include font-size($p-font-sizes, "cn");
+  }
+  header {
+    .menu {
+      @include font-size($header-menu-font-size, "cn");
+    }
+  }
+
+  .carouselArea {
+    .subTitle {
+      // @include font-size($subTitle-font-size, "cn");
+      span {
+        // @include font-size($p-font-sizes, "cn");
+      }
+    }
+    .slogan {
+      // @include font-size($slogan-font-size, "cn");
+    }
+  }
+
+  footer {
+    address {
+      // @include font-size($footer-font-size-companeyName, "cn");
+    }
+    p {
+      // @include font-size($footer-font-size-message, "cn");
+    }
+    ul {
+      // @include font-size($footer-font-size-companeyName, "cn");
+      a {
+        // @include font-size($footer-font-size-companeyName, "cn");
+      }
+      li {
+        a {
+          @include font-size($footer-font-size-privacy, "cn");
+        }
+      }
+    }
+    .footerPrivcy {
+      @include font-size($footer-font-size-privacy, "cn");
+    }
+  }
+}

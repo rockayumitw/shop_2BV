@@ -1,0 +1,34 @@
+.tabs{
+    &.__yellow{}
+    &.__green{
+        ul{
+            &.nav-tabs{
+                border-bottom:0px;
+            }
+            li{
+                padding:0.5rem 0.5rem;
+                &.nav-item{
+                    @include media-max(sm){
+                        padding: 0.3rem;
+                    }
+                    a{
+                        &.nav-link{
+                            padding:0.5rem 2rem;
+                            @include media-max(sm){
+                                padding:0.3rem 1.5rem;
+                            }
+                            background-color:map-get($colorGroup,'white');
+                            color:black;
+                            border-radius:50px;
+                            &.active{
+                                background-color:map-get($colorGroup,'RegalBlue');
+                                color:white;
+                                border-radius:50px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

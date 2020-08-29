@@ -1,0 +1,44 @@
+.share-box{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    .share-area{
+        // width: 80px;
+        @include media-max(md){
+            border: 1px solid map-get($colorGroup,'alto');
+            border-top-right-radius: 50px;
+            border-top-left-radius: 50px;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            min-height:80px;
+            min-width:80px;
+            display: flex;
+            display:block;
+            justify-content: center;
+            align-items: center;
+            @include absolute(top 50% left 0px);
+            transform: translate(0,-30px);
+        }
+        @include media-max(sm){
+            min-width:70px;
+            min-height:70px;
+            width: 70px;
+        }
+        @include media-max(xs){
+            min-width:50px;
+            min-height:50px;
+            width: 50px;
+        }
+        .sub-share-area{
+            display: flex;
+            justify-content: space-evenly;
+            @include media-max(md){
+                display:block;
+                // width:80px;
+                margin:0 auto;
+                // position: absolute;
+                // bottom: 0;
+            }
+        }
+    }
+}

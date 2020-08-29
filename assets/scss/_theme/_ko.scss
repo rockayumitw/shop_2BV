@@ -1,0 +1,57 @@
+%them-KO {
+  h1 {
+    //carousel
+    // color: map-get($colorGroup, "daintree");
+    @include font-size($h1-font-sizes, "ko");
+  }
+  h2 {
+    //main
+    // color: map-get($mainContentGroup, "normal-color");
+    @include font-size($h2-font-sizes, "ko");
+  }
+  h3 {
+    // color: map-get($colorGroup, "daintree");
+    // @include font-size($h3-font-sizes, "ko");
+  }
+  h4 {
+    // color: map-get($colorGroup, "emperor");
+    // @include font-size($h4-font-sizes, "ko");
+  }
+  h5 {
+    // color: map-get($mainContentGroup, "color-blue");
+  }
+  p {
+    letter-spacing: 1px;
+    // color: map-get($colorGroup, "emperor");
+    @include font-size($p-font-sizes, "ko");
+  }
+  header {
+    .menu {
+      @include font-size($header-menu-font-size, "ko");
+    }
+  }
+
+  footer {
+    address {
+      // @include font-size($footer-font-size-companeyName, "ko");
+    }
+    p {
+      // @include font-size($footer-font-size-message, "ko");
+    }
+
+    ul {
+      // @include font-size($footer-font-size-companeyName, "ko");
+      a {
+        // @include font-size($footer-font-size-companeyName, "ko");
+      }
+      li {
+        a {
+          @include font-size($footer-font-size-privacy, "ko");
+        }
+      }
+    }
+    .footerPrivcy {
+      @include font-size($footer-font-size-privacy, "ko");
+    }
+  }
+}

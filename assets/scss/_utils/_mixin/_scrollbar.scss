@@ -1,0 +1,22 @@
+@mixin scrollBar($style,$backgorund) {
+  @if $style == "style-1" {
+    scrollbar-track-color:transparent;
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+        @include borderRadius(0px);
+        @include box-shadow(0, 0, 0px, rgba(0, 0, 0, 0.3), $inset: true);
+    }
+    &::-webkit-scrollbar {
+        width: 5px;
+        height:5px;
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $backgorund;
+        opacity:0.5;
+        @include borderRadius(0px);
+        @include box-shadow(0, 0, 6px, rgba(0, 0, 0, 0.3), $inset: true);
+      
+    }
+  }
+}
