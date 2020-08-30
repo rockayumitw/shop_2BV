@@ -5,7 +5,7 @@
         <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                <a class="nav-link" href="/login" @click.prevent='logout'>Sign out</a>
+                <a class="nav-link" to="/login" @click.prevent='logout'>Sign out</a>
             </li>
         </ul>
     </nav>
@@ -21,15 +21,17 @@ export default {
         }
     },
     methods: {
-        // logout() {
-        //     const url = `${process.env.APIPATH}/logout`;
-        //     const vm = this;
-        //     this.$http.post(url).then((response) => {
-        //         if (response.data.success) {
-        //             this.$router.push('/Login')
-        //         }
-        //     })
-        // }
+        logout() {
+            // const url = `${process.env.APIPATH}/logout`;
+            const url = `https://vue-course-api.hexschool.io/logout`;
+            const vm = this;
+            this.$axios.post(url).then((response) => {
+                console.log(response)
+                if (response.data.success) {
+                    this.$router.push('/Login')
+                }
+            })
+        }
     }
 }
 </script>

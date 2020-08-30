@@ -31,7 +31,7 @@
         </template>
     </b-table>
 
-    <!--page-->
+    <!--page
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item" :class="{'disabled':!pagination.has_pre}">
@@ -52,7 +52,7 @@
                 </a>
             </li>
         </ul>
-    </nav>
+    </nav>-->
     <!---->
     <br /><br />
 
@@ -269,9 +269,10 @@
 
 <script>
 import $ from 'jquery'
-import {
-    apiTestData
-} from '~/api/path.js'
+import axios from 'axios'
+// import {
+//     apiTestData
+// } from '~/api/path.js'
 
 export default {
     // middleware: 'auth',
@@ -316,39 +317,21 @@ export default {
         }
     },
     mounted() {
-        this.test()
-        // this.getProducts();
+        this.getProducts();
     },
     methods: {
-        test(page = 1) {
-            console.log(apiTestData)
-            var data = {
-                page: 1
-            }
-            console.log()
-            apiTestData(data)
-                .then(res => {
-                    console.log(res)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-        },
         getProducts(page = 1) {
-            // const url = `${process.env.APIPATH}/api/${process.env.CUSTOMER_PATH}/admin/products?page=${page}`;
-            // const vm = this;
             // const url = `https://vue-course-api.hexschool.io/api/rockayumitw/products?page=${page}`
+            //https://vue-course-api.hexschool.io/admin/signin
             const url = `https://vue-course-api.hexschool.io/api/rockayumitw/admin/products?page=${page}` // 管理者取得資料
-            // const url = `https://vue-course-api.hexschool.io/api/rockayumitw/admin/product?page=${page}`
             const _this = this
-            // _this.isLoading = true
-            this.$axios.defaults.withCredentials = true
-            this.$axios.$post(url).then((res) => {
+            this.$axios.get(url).then((res) => {
+                console.log(res)
                 _this.isLoading = false;
                 console.log(res)
-                if (res.products.origin_price) {
-                    console.log(res.data)
-                }
+                // if (res.products.origin_price) {
+                //     console.log(res.data)
+                // }
                 _this.products = res.products;
                 console.log(_this.products)
                 _this.pagination = res.pagination;
@@ -364,15 +347,16 @@ export default {
                 this.isNew = false;
             }
             this.$bvModal.show('#productModal2')
-            // $('#productModal').modal('show')
         },
         updateProduct() { //更新產品
-            let url = `${process.env.APIPATH}/api/${process.env.CUSTOMER_PATH}/admin/product`;
+            // let url = `${process.env.APIPATH}/api/${process.env.CUSTOMER_PATH}/admin/product`;
+            let url = `https://vue-course-api.hexschool.io/api/rockayumitw/admin/product`;
             const vm = this;
             let httpMethod = 'post';
             //不是新的產品
             if (!vm.isNew) {
-                url = `${process.env.APIPATH}/api/${process.env.CUSTOMER_PATH}/admin/product/${vm.tempProduct.id}`;
+                // url = `${process.env.APIPATH}/api/${process.env.CUSTOMER_PATH}/admin/product/${vm.tempProduct.id}`;
+                url = `https://vue-course-api.hexschool.io/api/rockayumitw/admin/product/${vm.tempProduct.id}`;
                 httpMethod = 'put';
             }
             this.$http[httpMethod](url, {
@@ -392,7 +376,8 @@ export default {
             const vm = this;
             const formData = new FormData();
             formData.append('file-to-upload', uploadedFile);
-            const url = `${process.env.APIPATH}/api/${process.env.CUSTOMER_PATH}/admin/upload`;
+            // const url = `${process.env.APIPATH}/api/${process.env.CUSTOMER_PATH}/admin/upload`;
+            const url = `https://vue-course-api.hexschool.io/api/rockayumitw/admin/upload`;
             //'file-to-upload':欄位 , uploadedFile:將值上傳
             vm.status.fileUploading = true;
             this.$http.post(url, formData, { //上傳路徑,上傳formDATA本身,將格式改成formdata格式

@@ -11,6 +11,10 @@
                 input(type='checkbox', value='remember-me')
                 |  Remember me
         button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in
+        br
+        // div.test
+        //     ul
+        //         li(v-for='item in fackData.results' @click='testClick(item.id.value)') {{item.id.value}}
         p.mt-5.mb-3.text-muted &copy; 2017-2018
 </template>
 
@@ -20,6 +24,7 @@ import {
     mapActions,
     mapMutations
 } from 'vuex'
+import axios from 'axios'
 export default {
     layout: 'login',
     data() {
@@ -27,16 +32,44 @@ export default {
             userInfo: {
                 username: 'rockayumitw@gmail.com',
                 password: 'w1071030'
-            }
+            },
+            // fackData: ['123', '456', '789']
         }
     },
+    // asyncData({
+    //     isDev,
+    //     route,
+    //     store,
+    //     env,
+    //     params,
+    //     query,
+    //     req,
+    //     res,
+    //     redirect,
+    //     error
+    // }) {
+    //     let api = 'https://randomuser.me/api'
+    //     return axios({
+    //         url: api,
+    //         header: {}
+    //     }).then(res => {
+    //         console.log(res.data)
+    //         return {
+    //             fackData: res.data
+    //         }
+    //     })
+    // },
     computed: {},
     mounted() {
-        console.log(this.user)
+        // console.log(this.fackData)
+        // console.log(this.user)
     },
     methods: {
         // ...mapActions(['signin']),
         // ...mapMutations(['SET_USER'])
+        // testClick(data) {
+        //     this.$router.push(`/productTest/${data}`)
+        // },
         signin() {
             const url = `https://vue-course-api.hexschool.io/admin/signin`;
             // const url = `${process.env.APIPATH}/admin/signin`;
