@@ -5,33 +5,27 @@
         <button class="btn btn-primary" @click="openModal(true)">建立新的產品</button>
     </div>
 
-    <b-button v-b-modal.modal-center>Launch centered modal</b-button>
-
-    <b-modal id="modal-center" centered title="BootstrapVue">
-        <p class="my-4">Vertically centered modal!</p>
-    </b-modal>
-
     <!--產品列表-->
     <b-table :items="products" :fields="fields" caption-top>
-        <template v-slot:table-caption>This is a table caption at the top.</template>
         <template v-slot:cell(origin_price)='data'>
-            <span v-if="!data.origin_price">$0</span>
-            <span v-else> {{data.origin_price | currency}}</span>
+            <span v-if="!data.item.origin_price">$0</span>
+            <span v-else> {{data.item.origin_price | currency}}</span>
         </template>
         <template v-slot:cell(price)='data'>
-            <span v-if="!data.price">$0</span>
-            <span v-else> {{data.price | currency}}</span>
+            <span v-if="!data.item.price">$0</span>
+            <span v-else> {{data.item.price | currency}}</span>
         </template>
         <template v-slot:cell(is_enable)='data'>
             <b-button size="sm">啟用</b-button>
             <b-button size="sm">不啟用</b-button>
         </template>
         <template v-slot:cell(is_edit)='data'>
-            <b-button size="sm">編輯</b-button>
+            <b-button size="sm" @click='openModal(false,data.item)'>編輯</b-button>
+            <b-button size="sm" @click='delProduct(data.item)'>刪除</b-button>
         </template>
     </b-table>
 
-    <!--page
+    <!--page-->
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item" :class="{'disabled':!pagination.has_pre}">
@@ -52,7 +46,7 @@
                 </a>
             </li>
         </ul>
-    </nav>-->
+    </nav>
     <!---->
     <br /><br />
 
@@ -89,9 +83,7 @@
     <!--產品列表-->
 
     <!--modal-->
-
-    <b-modal id="productModal2" centered title="新增產品">
-        <p class="my-4">Vertically centered modal!</p>
+    <b-modal ref='productModal2' id="productModal2" centered :title="modalTitle">
         <div class="row">
             <div class="col-sm-4">
                 <div class="form-group">
@@ -159,6 +151,7 @@
         </div>
     </b-modal>
 
+    <!--
     <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content border-0">
@@ -239,9 +232,24 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
-    <div class="modal fade" id="delProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <b-modal ref='delProductModal' id="productModal2" centered title="刪除產品" hide-footer>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content border-0">
+                <div class="modal-body">
+                    是否刪除
+                    <strong class="text-danger">{{ tempProduct.title }}</strong> 商品(刪除後將無法恢復)。
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-danger" @click='delProduct(item)'>確認刪除</button>
+                </div>
+            </div>
+        </div>
+    </b-modal>
+
+    <!--<div class="modal fade" id="delProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content border-0">
                 <div class="modal-header bg-danger text-white">
@@ -254,7 +262,6 @@
                 </div>
                 <div class="modal-body">
                     是否刪除
-                    <!-- <strong class="text-danger">{{ tempProduct.title }}</strong> 商品(刪除後將無法恢復)。 -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
@@ -262,7 +269,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
     <!--modal-->
 </div>
 </template>
@@ -270,6 +277,7 @@
 <script>
 import $ from 'jquery'
 import axios from 'axios'
+axios.defaults.withCredentials = true
 // import {
 //     apiTestData
 // } from '~/api/path.js'
@@ -306,6 +314,7 @@ export default {
                     label: '編輯'
                 },
             ],
+            modalTitle: '',
             products: [],
             pagination: {},
             tempProduct: {},
@@ -321,74 +330,106 @@ export default {
     },
     methods: {
         getProducts(page = 1) {
-            // const url = `https://vue-course-api.hexschool.io/api/rockayumitw/products?page=${page}`
-            //https://vue-course-api.hexschool.io/admin/signin
             const url = `https://vue-course-api.hexschool.io/api/rockayumitw/admin/products?page=${page}` // 管理者取得資料
             const _this = this
             this.$axios.get(url).then((res) => {
                 console.log(res)
                 _this.isLoading = false;
-                console.log(res)
-                // if (res.products.origin_price) {
-                //     console.log(res.data)
-                // }
-                _this.products = res.products;
+                if (res.data.products.origin_price) {
+                    console.log(res.data.products)
+                }
+                _this.products = res.data.products;
                 console.log(_this.products)
-                _this.pagination = res.pagination;
+                _this.pagination = res.data.pagination;
             })
         },
         openModal(isNew, item) {
-            console.log('openmodal')
+            console.log(item)
             if (isNew) {
                 this.tempProduct = {};
                 this.isNew = true;
+                this.modalTitle = '新增產品'
             } else {
                 this.tempProduct = Object.assign({}, item);
+                console.log(this.tempProduct)
                 this.isNew = false;
+                this.modalTitle = '編輯產品'
             }
-            this.$bvModal.show('#productModal2')
+            this.$refs['productModal2'].show()
         },
         updateProduct() { //更新產品
             // let url = `${process.env.APIPATH}/api/${process.env.CUSTOMER_PATH}/admin/product`;
             let url = `https://vue-course-api.hexschool.io/api/rockayumitw/admin/product`;
-            const vm = this;
+            const _this = this;
             let httpMethod = 'post';
-            //不是新的產品
-            if (!vm.isNew) {
+
+            if (!_this.isNew) { //不是新的產品
                 // url = `${process.env.APIPATH}/api/${process.env.CUSTOMER_PATH}/admin/product/${vm.tempProduct.id}`;
-                url = `https://vue-course-api.hexschool.io/api/rockayumitw/admin/product/${vm.tempProduct.id}`;
+                url = `https://vue-course-api.hexschool.io/api/rockayumitw/admin/product/${_this.tempProduct.id}`;
                 httpMethod = 'put';
             }
-            this.$http[httpMethod](url, {
-                data: vm.tempProduct
+            this.$axios[httpMethod](url, {
+                data: _this.tempProduct
             }).then((res) => {
                 if (res.data.success) {
-                    $('#productModal').modal('hide')
-                    vm.getProducts();
+                    console.log(res.data.success)
+                    this.$refs['productModal2'].hide()
+                    _this.getProducts();
                 } else {
-                    $('#productModal').modal('hide')
+                    this.$refs['productModal2'].hide()
                     console.log('新增失敗')
                 }
             })
         },
+        delProduct(item) {
+            console.log(item)
+            console.log('刪除產品')
+            let _this = this
+            let product_id = item.id
+            this.$bvModal.msgBoxConfirm('你確定要刪除此產品', {
+                    title: '刪除產品',
+                    size: 'sm',
+                    buttonSize: 'sm',
+                    okVariant: 'danger',
+                    okTitle: 'YES',
+                    cancelTitle: 'NO',
+                    footerClass: 'p-2',
+                    hideHeaderClose: false,
+                    centered: true
+                })
+                .then(value => {
+                    this.boxTwo = value
+                    const url = `https://vue-course-api.hexschool.io/api/rockayumitw/admin/product/${product_id}`
+                    this.$axios.delete(url, {
+                        product_id
+                    }).then((res) => {
+                        console.log(res.data)
+                        _this.getProducts();
+                    })
+                })
+                .catch(err => {
+                    // An error occurred
+                })
+
+        },
         uploadFile() {
             const uploadedFile = this.$refs.files.files[0];
-            const vm = this;
+            const _this = this;
             const formData = new FormData();
             formData.append('file-to-upload', uploadedFile);
             // const url = `${process.env.APIPATH}/api/${process.env.CUSTOMER_PATH}/admin/upload`;
             const url = `https://vue-course-api.hexschool.io/api/rockayumitw/admin/upload`;
             //'file-to-upload':欄位 , uploadedFile:將值上傳
-            vm.status.fileUploading = true;
+            _this.status.fileUploading = true;
             this.$http.post(url, formData, { //上傳路徑,上傳formDATA本身,將格式改成formdata格式
                 headers: {
                     'Content-Type': 'multipart/form-data' //將格式改成formdata格式
                 }
             }).then((res) => {
-                vm.status.fileUploading = false;
+                _this.status.fileUploading = false;
                 if (res.data.success) {
                     // vm.tempProduct.imageUrl=res.data.imageUrl;
-                    vm.$set(vm.tempProduct, 'imageUrl', res.data.imageUrl); //強制將圖片路徑寫入,具有雙向綁定
+                    _this.$set(_this.tempProduct, 'imageUrl', res.data.imageUrl); //強制將圖片路徑寫入,具有雙向綁定
                 } else {
                     this.$bus.$emit('message:push', res.data.message, 'danger');
                     console.log('test')

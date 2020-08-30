@@ -24,7 +24,6 @@ import {
     mapActions,
     mapMutations
 } from 'vuex'
-import axios from 'axios'
 export default {
     layout: 'login',
     data() {
