@@ -144,7 +144,6 @@
 <script>
 import $ from 'jquery'
 import axios from 'axios'
-axios.defaults.withCredentials = true
 // import {
 //     apiTestData
 // } from '~/api/path.js'
@@ -300,10 +299,9 @@ export default {
                     // vm.tempProduct.imageUrl=res.data.imageUrl;
                     _this.$set(_this.tempProduct, 'imageUrl', res.data.imageUrl); //強制將圖片路徑寫入,具有雙向綁定
                 } else {
-                    this.$bus.$emit('message:push', res.data.message, 'danger');
+                    _this.$nuxt.$emit('message:push', res.data.message, 'danger');
                     console.log('test')
                 }
-
             })
         }
     },

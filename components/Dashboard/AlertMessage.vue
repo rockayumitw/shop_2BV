@@ -14,7 +14,11 @@ export default {
     name: 'Navbar',
     data() {
         return {
-            messages: [],
+            messages: [{
+                message: '',
+                status: '',
+                timestamp: 0
+            }],
         };
     },
     methods: {
@@ -31,26 +35,27 @@ export default {
             this.messages.splice(num, 1);
         },
         removeMessageWithTiming(timestamp) {
-            const vm = this;
+            const _this = this;
             setTimeout(() => {
-                vm.messages.forEach((item, i) => {
+                _this.messages.forEach((item, i) => {
                     if (item.timestamp === timestamp) {
-                        vm.messages.splice(i, 1);
+                        _this.messages.splice(i, 1);
                     }
                 });
             }, 5000);
         },
     },
     created() {
-        const vm = this;
+        const _this = this;
 
         // 自定義名稱 'messsage:push'
         // message: 傳入參數
         // status: 樣式，預設值為 warning
-        // vm.$bus.$on('message:push', (message, status = 'warning') => { ///多打一個S
-        //     vm.updateMessage(message, status);
-        // });
-        // vm.$bus.$emit('message:push');
+        _this.$nuxt.$on('message:push', (message, status = 'warning') => { ///多打一個S
+            console.log(message, status)
+            _this.updateMessage(message, status);
+        });
+
     },
 };
 </script>

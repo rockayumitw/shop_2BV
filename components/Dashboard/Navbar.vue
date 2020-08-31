@@ -25,7 +25,7 @@ export default {
         logout() {
             // const url = `${process.env.APIPATH}/logout`;
             const url = `https://vue-course-api.hexschool.io/logout`;
-            const vm = this;
+            const _this = this;
             this.$axios.post(url).then((response) => {
                 console.log(response)
                 if (response.data.success) {
