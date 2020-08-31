@@ -8,9 +8,9 @@ div
                 li.nav-item
                     nuxt-link.nav-link(to='./products') 產品列表
                 li.nav-item
-                    nuxt-link.nav-link(to='./products') 訂單列表
+                    nuxt-link.nav-link(to='./orderlist') 訂單列表
                 li.nav-item
-                    nuxt-link.nav-link(to='./products') 優惠券 
+                    nuxt-link.nav-link(to='./coupon') 優惠券 
 
             h6.sidebar-heading.d-flex.justify-content-between.align-items-center.px-3.mt-4.mb-1.text-muted
                 span 模擬功能

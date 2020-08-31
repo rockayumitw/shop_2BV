@@ -31,28 +31,7 @@
         </template>
     </b-table>
 
-    <!--page-->
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item" :class="{'disabled':!pagination.has_pre}">
-                <a class="page-link" href="#" aria-label="Previous" @click.prevent="getProducts(pagination.current_page - 1)">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-            </li>
-
-            <li class="page-item" v-for="page in pagination.total_pages" :key="page" :class="{'active':pagination.current_page === page}">
-                <a class="page-link" href="#" @click.prevent="getProducts(page)">{{page}}</a>
-            </li>
-
-            <li class="page-item" :class="{'disabled':!pagination.has_next}">
-                <a class="page-link" href="#" aria-label="Next" @click.prevent="getProducts(pagination.current_page + 1)">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <Pagination :pagination="pagination" />
     <!--產品列表-->
 
     <!--modal-->
@@ -144,6 +123,7 @@
 <script>
 import $ from 'jquery'
 import axios from 'axios'
+import Pagination from '../Dashboard/Pagination'
 // import {
 //     apiTestData
 // } from '~/api/path.js'
@@ -153,6 +133,9 @@ export default {
     // meta: {
     //     requiresAuth: true,
     // },
+    components: {
+        Pagination
+    },
     data() {
         return {
             fields: [{
@@ -192,11 +175,19 @@ export default {
             },
         }
     },
+    created() {
+
+    },
     mounted() {
         this.getProducts();
+        let _this = this
+        this.$nuxt.$on('get-product-page', function (page) {
+            _this.getProducts(page);
+        })
     },
     methods: {
         getProducts(page = 1) {
+            console.log(page)
             const url = `https://vue-course-api.hexschool.io/api/rockayumitw/admin/products?page=${page}` // 管理者取得資料
             const _this = this
             this.$axios.get(url).then((res) => {
