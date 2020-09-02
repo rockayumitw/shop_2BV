@@ -4,7 +4,7 @@
     customerOrder-->
 
     <div class="row mt-4">
-        <div class="col-md-4 mb-4" v-for="item in products" :key="item.id">
+        <div class="col-md-4 col-6 mb-4" v-for="item in products" :key="item.id">
             <div class="card border-0 shadow-sm">
                 <div style="height: 150px; background-size: cover; background-position: center" :style="{backgroundImage:`url(${item.imageUrl})`}">
                 </div>
@@ -35,16 +35,9 @@
     </div>
 
     <!--取得商品-->
-    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <b-modal ref='productModal' id="productModal" centered :title="product.title " hide-footer>
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{ product.title }}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
 
                 <div class="modal-body">
                     <img :src="product.imageUrl" class="img-fluid" alt="">
@@ -75,7 +68,8 @@
                 </div>
             </div>
         </div>
-    </div>
+    </b-modal>
+
     <!--取得商品-->
 
     <!--購物清單-->
@@ -202,66 +196,76 @@ export default {
         getProducts() { //取得商品列表
             //https://vue-course-api.hexschool.io/api/rockayumitw/admin/products?page=${page}
             const url = `https://vue-course-api.hexschool.io/api/rockayumitw/products?page=:page`;
-            const vm = this;
+            const _this = this;
             // vm.isLoading = true;
             this.$axios.$get(url).then((res) => {
+                console.log(res)
                 // vm.isLoading = false;
-                vm.products = res.data.products;
+                _this.products = res.products;
                 // console.log(res.data.products)
             })
         },
         getProduct(id) { //取得單一列表
             const url = `https://vue-course-api.hexschool.io/api/rockayumitw/product/${id}`;
-            const vm = this;
-            vm.status.loadingItem = id;
+            const _this = this;
+            _this.status.loadingItem = id;
             this.$axios.$get(url).then((res) => {
-                vm.product = res.data.product;
-                $('#productModal').modal('show');
-                vm.status.loadingItem = '';
+                _this.product = res.product;
+                // $('#productModal').modal('show');
+                _this.$refs['productModal'].show()
+                _this.status.loadingItem = '';
                 // console.log(res)
             })
         },
         addtoCart(id, qty = 1) { //加入購物車
-            const vm = this;
+            console.log(id, qty)
+            const _this = this;
             const url = `https://vue-course-api.hexschool.io/api/rockayumitw/cart`;
-            vm.status.loadingItem = id;
+            _this.status.loadingItem = id;
             const cart = { //兩個參數
                 product_id: id,
                 qty,
             }
-            this.$http.post(url, {
+            this.$axios.post(url, {
                 data: cart
             }).then((res) => {
-                //console.log(res);
-                vm.status.loadingItem = '';
-                $('#productModal').modal('hide');
-                vm.getCart(); //重新獲取購物車表單
+                console.log(res);
+                _this.status.loadingItem = '';
+                _this.$refs['productModal'].hide()
+                _this.getCart(); //重新獲取購物車表單
             });
         },
         getCart() { //獲得購物車表單
-            const vm = this;
+            const _this = this;
             const url = `https://vue-course-api.hexschool.io/api/rockayumitw/cart`;
             // vm.isLoading = true;
-            this.$axios.$get(url).then((res) => {
-                vm.cart = res.data.data;
+            var config = {
+                headers: {
+                    'Access-Control-Allow-Origin': '*'
+                }
+            };
+            this.$axios.get(url, config).then((res) => {
+                console.log(res)
+                console.log(config)
+                _this.cart = res.data.carts;
                 // vm.isLoading = false;
-                //vm.getCart();
+                // vm.getCart();
             });
         },
         removeCartItem(id) {
-            const vm = this;
+            const _this = this;
             const url = `https://vue-course-api.hexschool.io/api/rockayumitw/cart/${id}`;
             // vm.isLoading = true;
             this.$axios.delete(url).then((res) => {
-                vm.getCart();
+                _this.getCart();
                 // vm.isLoading = false;
             });
         },
         addCouponCode() {
-            const vm = this;
+            const _this = this;
             const url = `https://vue-course-api.hexschool.io/api/rockayumitw/coupon`;
             const coupon = {
-                code: vm.coupon_code
+                code: _this.coupon_code
             }
             // vm.isLoading = true;
             this.$axios.$post(url, {
@@ -272,9 +276,9 @@ export default {
             });
         },
         creatOrder() {
-            const vm = this;
+            const _this = this;
             const url = `https://vue-course-api.hexschool.io/api/rockayumitw/order`;
-            const order = vm.form;
+            const order = _this.form;
             // vm.isLoading = true;
             this.$validator.validate().then((result) => {
                 if (result) {
@@ -284,7 +288,7 @@ export default {
                         // vm.isLoading = false;
                         console.log('訂單已建立')
                         if (res.data.success) {
-                            vm.$router.push(`/customerCheckOut/${res.data.orderId}`)
+                            _this.$router.push(`/customerCheckOut/${res.data.orderId}`)
                         }
                     });
                 } else {

@@ -64,8 +64,23 @@ module.exports = {
     'vue-sweetalert2/nuxt',
     'nuxt-fontawesome',
     'vue-social-sharing/nuxt',
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy'
   ],
+  axios: {
+    proxy: true,
+    prefix: '/api',
+    credentials: true
+  },
+  proxy: {
+    '/api/':{
+      target: 'https://vue-course-api.hexschool.io/',
+      changeOrigin: true,
+      pathRewrite:{
+        '^/api': '/',
+      },
+    }
+  },
   /*
   ** Build configuration
   */
