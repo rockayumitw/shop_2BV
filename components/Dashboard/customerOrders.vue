@@ -81,12 +81,13 @@
                     <th>品名</th>
                     <th>數量</th>
                     <th>單價</th>
+                    <th>總價</th>
                 </thead>
                 <tbody>
                     <tr v-for="item in cart.carts" :key="item.id">
                         <td class="align-middle">
                             <button type="button" class="btn btn-outline-danger btn-sm" @click="removeCartItem(item.id)">
-                                <i class="far fa-trash-alt"></i>
+                                <b-icon icon="trash" aria-hidden="true"></b-icon>
                             </button>
                         </td>
                         <td class="align-middle">
@@ -95,24 +96,25 @@
                                 已套用優惠券
                             </div>
                         </td>
-                        <td class="align-middle">數量</td>
-                        <td class="align-middle">總價</td>
+                        <td class="align-middle">
+                            {{item.qty}}
+                        </td>
                         <td>{{item.qty}}/{{item.product.unit}}</td>
                         <td>{{item.final_total}}</td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="3" class="text-right">總計</td>
-                        <td class="text-right">{{ cart.total }}</td>
+                        <td colspan="3" class="text-right">總價</td>
+                        <td class="text-right">{{ cart.final_total }}</td>
                     </tr>
-
-                    <tr v-if="cart.final_total !== cart.total">
+                    <tr v-if="cart.final_total">
                         <td colspan="3" class="text-right text-success">折扣價</td>
                         <td class="text-right text-success">{{ cart.final_total }}</td>
                     </tr>
                 </tfoot>
             </table>
+
             <!--套用優惠-->
             <div class="input-group mb-3 input-group-sm">
                 <input type="text" class="form-control" v-model="coupon_code" placeholder="請輸入優惠碼">
@@ -125,44 +127,55 @@
             <!--套用優惠-->
         </div>
     </div>
-
     <!--購物清單-->
 
     <!--表單-->
     <div class="my-5 row justify-content-center">
-        <form class="col-md-6" @submit.prevent='creatOrder'>
+        <ValidationObserver tag='form' ref="observer" class="col-md-6" @submit.prevent='creatOrder'>
             <div class="form-group">
                 <label for="useremail">Email</label>
-                <!--<input type="email" class="form-control" name="email" id="useremail" placeholder="請輸入 Email" v-model="form.user.email" :class="{'is-invalid':errors.has('name')}" v-validate="'required|email'">
-                <span class="text-danger" v-if="errors.has('email')">{{errors.first('email')}}</span>-->
+                <ValidationProvider rules="required|email" v-slot="{ errors }">
+                    <input type="email" class="form-control" name="email" id="useremail" placeholder="請輸入 Email" v-model="form.user.email">
+                    <span class="text-danger">{{errors[0]}}</span>
+                </ValidationProvider>
             </div>
-
             <div class="form-group">
                 <label for="username">收件人姓名</label>
-                <!--<input type="text" class="form-control" name="name" id="username" placeholder="輸入姓名" :class="{'is-invalid':errors.has('name')}" v-validate="'required'" v-model="form.user.name">
-                <span class="text-danger" v-if="errors.has('name')">姓名必須輸入</span>
-                當觸發的時候不存在會跳出錯誤,name是對應上面的name="name"-->
-            </div>
+                <!--當觸發的時候不存在會跳出錯誤,name是對應上面的name="name"
+               <input type="text" class="form-control" name="name" id="username" placeholder="輸入姓名" :class="{'is-invalid':errors.has('name')}" v-validate="'required'" v-model="form.user.name">
+                <span class="text-danger" v-if="errors.has('name')">姓名必須輸入</span>-->
 
+                <ValidationProvider rules="required" v-slot="{ errors }">
+                    <input type="text" class="form-control" name="username" id="username" placeholder="請輸入 姓名" v-model="form.user.name">
+                    <span class="text-danger">{{errors[0]}}</span>
+                </ValidationProvider>
+
+            </div>
             <div class="form-group">
                 <label for="usertel">收件人電話</label>
-                <input type="tel" class="form-control" id="usertel" placeholder="請輸入電話">
+                <!--<input type="tel" class="form-control" id="usertel" placeholder="請輸入電話">-->
+                <ValidationProvider rules="required" v-slot="{ errors }">
+                    <input type="tel" class="form-control" name="tel" id="usertel" placeholder="請輸入連絡電話" v-model="form.user.tel">
+                    <span class="text-danger">{{errors[0]}}</span>
+                </ValidationProvider>
             </div>
-
             <div class="form-group">
                 <label for="useraddress">收件人地址</label>
-                <input type="address" class="form-control" name="address" id="useraddress" placeholder="請輸入地址">
-                <span class="text-danger">地址欄位不得留空</span>
+                <ValidationProvider rules="required" v-slot="{ errors }">
+                    <input type="text" class="form-control" name="address" id="useraddress" placeholder="請輸入地址" v-model="form.user.address">
+                    <span class="text-danger">{{errors[0]}}</span>
+                </ValidationProvider>
+                <!--<input type="address" class="form-control" name="address" id="useraddress" placeholder="請輸入地址">
+                <span class="text-danger">地址欄位不得留空</span>-->
             </div>
-
             <div class="form-group">
-                <label for="useraddress">留言</label>
+                <label for="usermessage">留言</label>
                 <textarea name="" id="" class="form-control" cols="30" rows="10"></textarea>
             </div>
             <div class="text-right">
                 <button class="btn btn-danger">送出訂單</button>
             </div>
-        </form>
+        </ValidationObserver>
     </div>
 
 </div>
@@ -170,7 +183,20 @@
 
 <script>
 import $ from 'jquery';
+import {
+    ValidationProvider,
+    ValidationObserver
+} from 'vee-validate';
+import {
+    BIcon
+} from 'bootstrap-vue'
+
 export default {
+    components: {
+        BIcon,
+        ValidationProvider,
+        ValidationObserver
+    },
     data() {
         return {
             products: [],
@@ -183,10 +209,10 @@ export default {
             coupon_code: '',
             form: {
                 user: {
-                    name: '',
-                    email: '',
-                    tel: '',
-                    address: '',
+                    name: 'test',
+                    email: 'test@test.com',
+                    tel: '000000',
+                    address: 'test',
                 },
                 message: '',
             }
@@ -210,7 +236,7 @@ export default {
             const _this = this;
             _this.status.loadingItem = id;
             this.$axios.$get(url).then((res) => {
-                _this.product = res.product;
+                _this.product = res.products;
                 // $('#productModal').modal('show');
                 _this.$refs['productModal'].show()
                 _this.status.loadingItem = '';
@@ -238,16 +264,12 @@ export default {
         getCart() { //獲得購物車表單
             const _this = this;
             const url = `https://vue-course-api.hexschool.io/api/rockayumitw/cart`;
-            // vm.isLoading = true;
-            var config = {
-                headers: {
-                    'Access-Control-Allow-Origin': '*'
-                }
-            };
-            this.$axios.get(url, config).then((res) => {
+            this.$axios.get(url).then((res) => {
                 console.log(res)
-                console.log(config)
-                _this.cart = res.data.carts;
+                _this.cart = res.data.data;
+                // console.log(_this.cart)
+                // console.log(_this.cart.carts)
+                // console.log(_this.cart.carts[0].product.title)
                 // vm.isLoading = false;
                 // vm.getCart();
             });
@@ -272,7 +294,11 @@ export default {
                 data: coupon
             }).then((res) => {
                 // vm.isLoading = false;
-                // console.log(res)
+
+                // test
+                console.log(res)
+                //找不到優惠卷內容錯誤提示訊息
+                // 要到後台建立訂單
             });
         },
         creatOrder() {
@@ -280,15 +306,22 @@ export default {
             const url = `https://vue-course-api.hexschool.io/api/rockayumitw/order`;
             const order = _this.form;
             // vm.isLoading = true;
-            this.$validator.validate().then((result) => {
+            this.$refs.observer.validate().then((result) => {
                 if (result) {
                     this.$axios.$post(url, {
                         data: order
                     }).then((res) => {
-                        // vm.isLoading = false;
-                        console.log('訂單已建立')
-                        if (res.data.success) {
-                            _this.$router.push(`/customerCheckOut/${res.data.orderId}`)
+                        console.log(res)
+                        if (res.success) {
+                            console.log(res.orderId)
+                            _this.$router.push({
+                                path: `/admin/_customerCheckOut/${res.orderId}`
+                            })
+                            // let id = res.orderId
+                            // _this.$router.push({
+                            //     name: `/admin/customerCheckOut`,
+                            //     params: id
+                            // })
                         }
                     });
                 } else {

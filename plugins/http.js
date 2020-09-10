@@ -6,7 +6,7 @@ axios.defaults.withCredentials = true
 // })
 
 //axios實例
-console.log('1')
+// console.log('1')
 var service = axios.create({
     // baseURL: "https://jsonplaceholder.typicode.com",
     baseURL: "https://vue-course-api.hexschool.io/",
@@ -74,12 +74,12 @@ service.interceptors.response.use((res) => {
         } else {
           // 成功發出請求但沒收到res
             if (!window.navigator.onLine) {
-                console.log('網路斷線: ' + window.navigator.onLine)
+                // console.log('網路斷線: ' + window.navigator.onLine)
                 // 網路斷線
                 alert('網路斷線')
             }else {
                 // 可能跨域, 或程式問題
-                console.log('可能跨域, 或程式問題: ' + window.navigator.onLine)
+                // console.log('可能跨域, 或程式問題: ' + window.navigator.onLine)
                 alert('可能跨域, 或程式上有問題')
                 return Promise.reject(error)
             }

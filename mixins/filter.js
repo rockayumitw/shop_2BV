@@ -1,3 +1,4 @@
+import Vue from 'vue'
 
 export default function (num) {
     const n = Number(num);
@@ -6,3 +7,4 @@ export default function (num) {
       return currency;
     })}`;
   }
+

@@ -47,7 +47,9 @@ module.exports = {
     { src: '~plugins/main', ssr: false },
     { src: '~plugins/i18n'},
     { src: "~plugins/aos", ssr: false },
-    { src: '~plugins/http', ssr: false}
+    { src: '~plugins/http', ssr: false},
+    { src: '~plugins/vee-validate', ssr: true },
+    { src: '~plugins/filter', ssr:false}
   // { src: '~/plugins/mixins/header', ssr: false}
   ],
   /*
@@ -65,7 +67,7 @@ module.exports = {
     'nuxt-fontawesome',
     'vue-social-sharing/nuxt',
     '@nuxtjs/axios',
-    '@nuxtjs/proxy'
+    '@nuxtjs/proxy',
   ],
   axios: {
     proxy: true,
@@ -88,13 +90,15 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
+   transpile: ['TweenMax', 'TimelineMax','vee-validate/dist/rules'],
     extend (config, ctx) {
     },
     vendor: ['aos'],
-    transpile: ['TweenMax', 'TimelineMax'],
     plugins:[
       new webpack.ProvidePlugin({
-        '$': 'jquery'
+        '$': 'jquery',
+        jQuery:'jquery',
+        moment:'moment'
       })
     ]
   },

@@ -19,11 +19,11 @@ export const getters = {  // 這邊相當於computed
 export const mutations = { // 這邊才是修改store資料狀態的地方
   ////// 2020 0829 ---
   SET_USERINFO (state, data){
-    console.log(data)
+    // console.log(data)
     state.userInfo = data
   },
   SET_USERTOKEN (state, data){
-    console.log(data)
+    // console.log(data)
     state.userToken = data
   }
 }
