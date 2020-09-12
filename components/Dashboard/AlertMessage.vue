@@ -52,7 +52,7 @@ export default {
         // message: 傳入參數
         // status: 樣式，預設值為 warning
         _this.$nuxt.$on('message:push', (message, status = 'warning') => { ///多打一個S
-            console.log(message, status)
+            // console.log(message, status)
             _this.updateMessage(message, status);
         });
 

@@ -225,7 +225,7 @@ export default {
             const _this = this;
             // vm.isLoading = true;
             this.$axios.$get(url).then((res) => {
-                console.log(res)
+                // console.log(res)
                 // vm.isLoading = false;
                 _this.products = res.products;
                 // console.log(res.data.products)
@@ -244,7 +244,7 @@ export default {
             })
         },
         addtoCart(id, qty = 1) { //加入購物車
-            console.log(id, qty)
+            // console.log(id, qty)
             const _this = this;
             const url = `https://vue-course-api.hexschool.io/api/rockayumitw/cart`;
             _this.status.loadingItem = id;
@@ -255,7 +255,7 @@ export default {
             this.$axios.post(url, {
                 data: cart
             }).then((res) => {
-                console.log(res);
+                // console.log(res);
                 _this.status.loadingItem = '';
                 _this.$refs['productModal'].hide()
                 _this.getCart(); //重新獲取購物車表單
@@ -265,7 +265,7 @@ export default {
             const _this = this;
             const url = `https://vue-course-api.hexschool.io/api/rockayumitw/cart`;
             this.$axios.get(url).then((res) => {
-                console.log(res)
+                // console.log(res)
                 _this.cart = res.data.data;
                 // console.log(_this.cart)
                 // console.log(_this.cart.carts)
@@ -296,7 +296,7 @@ export default {
                 // vm.isLoading = false;
 
                 // test
-                console.log(res)
+                // console.log(res)
                 //找不到優惠卷內容錯誤提示訊息
                 // 要到後台建立訂單
             });
@@ -311,9 +311,9 @@ export default {
                     this.$axios.$post(url, {
                         data: order
                     }).then((res) => {
-                        console.log(res)
+                        // console.log(res)
                         if (res.success) {
-                            console.log(res.orderId)
+                            // console.log(res.orderId)
                             _this.$router.push({
                                 path: `/admin/_customerCheckOut/${res.orderId}`
                             })
@@ -325,7 +325,7 @@ export default {
                         }
                     });
                 } else {
-                    console.log('訂單未完成')
+                    // console.log('訂單未完成')
                 }
             })
 

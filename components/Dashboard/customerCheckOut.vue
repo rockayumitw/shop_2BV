@@ -88,7 +88,7 @@ export default {
             const url = `https://vue-course-api.hexschool.io/api/rockayumitw/pay/${vm.orderId}`;
             // vm.isLoading = true;
             this.$axios.post(url).then((res) => {
-                console.log(res);
+                // console.log(res);
                 if (res.data.success) {
                     this.getOrder()
                 }
@@ -97,8 +97,8 @@ export default {
         }
     },
     created() {
-        console.log('hello')
-        console.log(this.$route.params.id)
+        // console.log('hello')
+        // console.log(this.$route.params.id)
         this.orderId = this.$route.params.id; //對應路由
         // console.log(this.orderId)
         this.getOrder(); //順序要注意

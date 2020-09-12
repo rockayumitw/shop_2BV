@@ -187,14 +187,14 @@ export default {
     },
     methods: {
         getProducts(page = 1) {
-            console.log(page)
+            // console.log(page)
             const url = `https://vue-course-api.hexschool.io/api/rockayumitw/admin/products?page=${page}` // 管理者取得資料
             const _this = this
             this.$axios.get(url).then((res) => {
-                console.log(res)
+                // console.log(res)
                 _this.isLoading = false;
                 if (res.data.products.origin_price) {
-                    console.log(res.data.products)
+                    // console.log(res.data.products)
                 }
                 _this.products = res.data.products;
                 _this.isBusy = false
@@ -202,14 +202,14 @@ export default {
             })
         },
         openModal(isNew, item) {
-            console.log(item)
+            // console.log(item)
             if (isNew) {
                 this.tempProduct = {};
                 this.isNew = true;
                 this.modalTitle = '新增產品'
             } else {
                 this.tempProduct = Object.assign({}, item);
-                console.log(this.tempProduct)
+                // console.log(this.tempProduct)
                 this.isNew = false;
                 this.modalTitle = '編輯產品'
             }
@@ -230,7 +230,7 @@ export default {
                 data: _this.tempProduct
             }).then((res) => {
                 if (res.data.success) {
-                    console.log(res.data.success)
+                    // console.log(res.data.success)
                     this.$refs['productModal2'].hide()
                     _this.getProducts();
                 } else {

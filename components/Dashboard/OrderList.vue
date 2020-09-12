@@ -15,8 +15,17 @@
             <span>{{data.item.user.email}}</span>
         </template>
         <template v-slot:cell(products)='data'>
-            <span>{{data.item.products}}</span>
-            <!--<span>{{data.item.products.product.title}}</span>-->
+            <ul v-for="item in data.item.products" :key='item.index'>
+                <li>
+                    產品名稱 : {{item.product.title}}
+                </li>
+                <li>
+                    數量 : {{item.qty}}
+                </li>
+                <li>
+                    單位 : {{item.product.unit}}
+                </li>
+            </ul>
         </template>
         <template v-slot:cell(total)='data'>
             <span>{{data.item.total}}</span>
