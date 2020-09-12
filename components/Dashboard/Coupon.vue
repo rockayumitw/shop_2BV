@@ -1,6 +1,6 @@
 <template>
 <div>
-    <b-button @click='getmodal()'>建立新的優惠卷</b-button>
+    <b-button @click='getmodal(true)'>建立新的優惠卷</b-button>
     <!--產品列表-->
     <b-table :items="coupon" :fields="fields" :busy="isBusy" caption-top>
         <template v-slot:table-busy>
@@ -13,17 +13,18 @@
             {{data.item.due_date | dateFormat('YYYY-MM-DD')}}
         </template>
         <template v-slot:cell(action)='data'>
-            <b-button @click='editCoupon(data.item.id)'>編輯</b-button>
+            <b-button @click='getmodal(false,data.item)'>編輯</b-button>
             <b-button @click='removeCoupon(data.item.id)'>刪除</b-button>
         </template>
     </b-table>
     <!---->
+    <Pagination :pagination="pagination" />
 
-    <b-modal ref='couponModal' id="couponModal" title="新增優惠卷" centered hide-footer>
+    <b-modal ref='couponModal' id="couponModal" :title="modaltitle" centered hide-footer>
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body">
-                    <ValidationObserver tag="form" ref="couponForm" @submit.prevent='newCoupon'>
+                    <ValidationObserver tag="form" ref="couponForm" @submit.prevent='changeCoupon()'>
                         <div class="form-group">
                             <label for="title">標題</label>
                             <ValidationProvider rules="required" v-slot="{ errors }">
@@ -71,13 +72,17 @@ import {
     ValidationProvider,
     ValidationObserver
 } from 'vee-validate';
+import Pagination from '../Dashboard/Pagination'
 export default {
     components: {
         ValidationProvider,
-        ValidationObserver
+        ValidationObserver,
+        Pagination
     },
     data() {
         return {
+            isNew: null,
+            modaltitle: '',
             tempCoupon: {
                 title: '',
                 is_enabled: 0,
@@ -112,21 +117,43 @@ export default {
     },
     mounted() {
         this.getCoupon()
-        console.log(this.status)
-        console.log(this.changeDate)
     },
     methods: {
-        getmodal() {
+        getmodal(action, item) {
             let _this = this
+            if (action == true) {
+                console.log(action)
+                _this.isNew = true
+                _this.tempCoupon = {}
+                _this.modaltitle = '新增優惠卷'
+                // _this.changeCoupon()
+            } else {
+                _this.modaltitle = '編輯優惠卷'
+                _this.tempCoupon = Object.assign({}, item);
+                _this.isNew = false
+                _this.tempCoupon.due_date = moment(_this.tempCoupon.due_date).format('YYYY-MM-DD')
+                // _this.changeCoupon(id)
+            }
             _this.$refs['couponModal'].show()
         },
-        newCoupon() { // 新增優惠卷
-            const url = `https://vue-course-api.hexschool.io/api/rockayumitw/admin/coupon`
+        changeCoupon() { // 新增優惠卷
+            let url = ''
             let _this = this
-            this.tempCoupon.due_date = new Date(this.tempCoupon.due_date).getTime()
-            this.$refs.couponForm.validate().then((result) => {
+            let httpMethod = ''
+
+            if (_this.isNew) {
+                httpMethod = 'post'
+                url = `https://vue-course-api.hexschool.io/api/rockayumitw/admin/coupon`
+            } else {
+                httpMethod = 'put'
+                url = `https://vue-course-api.hexschool.io/api/rockayumitw/admin/coupon/${ _this.tempCoupon.id}`
+            }
+
+            _this.tempCoupon.due_date = new Date(this.tempCoupon.due_date).getTime()
+
+            _this.$refs.couponForm.validate().then((result) => {
                 if (result) {
-                    _this.$axios.post(url, {
+                    _this.$axios[httpMethod](url, {
                         data: this.tempCoupon
                     }).then((res) => {
                         console.log(res)
@@ -141,7 +168,9 @@ export default {
             ///api/:api_path/admin/coupons?page=:page
             let _this = this
             _this.$axios.get(url).then((res) => {
+                console.log(res)
                 this.coupon = res.data.coupons
+                this.pagination = res.data.pagination;
             })
         },
         editCoupon(id) {
